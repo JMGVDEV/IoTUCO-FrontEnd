@@ -1,0 +1,42 @@
+
+.login-User-Info {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 100px;
+}
+.avatar {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 250px;
+    Color: rgb(32, 32, 170);
+}
+
+.delete {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 500px;
+}
+.create {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 250px;
+}
+.update {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 250px;
+}
+.list-User {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    margin-left: 10px;
+    background-origin: rgb(32, 32, 170);
+}
+.login-Card-Info {
+    padding-left: 0;
+    padding-right: 80px;
+}
+.login-Card {
+    max-height: 240px;
+    max-width: 500px;
+}
