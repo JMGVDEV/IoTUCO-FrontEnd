@@ -6,16 +6,19 @@ import Grid from '@material-ui/core/Grid'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import DropdownItem from 'react-bootstrap/DropdownItem'
 import LogOut from '../components/LogOut'
+
+
 function Welcome(){
+   
                   
             return (
              <div className = 'container'>
                 <Grid container justify = "center">
                 <Box my={4}>
-                    <Typography  variant = "h2" gutterBottom>
-                        Hello Luis Miguel, how are you?
+                    <Typography align = 'center' variant = "h2" style={{color:'blue'}} gutterBottom>
+                        Hello , how are you?
                     </Typography>
-                    <Typography  variant = "h3" gutterBottom>
+                    <Typography  variant = "h3" color="textSecondary" gutterBottom>
                         welcome to  this proyect!!
                     </Typography>
                 </Box>
@@ -23,9 +26,9 @@ function Welcome(){
                 <Grid container justify = "center">
                     <DropdownButton id = "dropdown-basic-button" title = "PAGES" >
                         <DropdownItem href = "/adminusers"> AdminUsers </DropdownItem>
-                        <DropdownItem href = "/main/welcome/AdminUsers"> EstadoCama </DropdownItem>
-                        <DropdownItem href = "/main/welcome/AdminUsers"> ConfigurarAcciones </DropdownItem>
-                        <DropdownItem href = "/main/welcome/AdminUsers"> Dashboards </DropdownItem>
+                        <DropdownItem href = "/growbedstatus"> EstadoCama </DropdownItem>
+                        <DropdownItem href = "/configactions"> ConfigurarAcciones </DropdownItem>
+                        <DropdownItem href = "/dashboards"> Dashboards </DropdownItem>
                     </DropdownButton>
                 </Grid> 
                 <LogOut/>      

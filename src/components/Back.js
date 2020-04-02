@@ -1,14 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 
 const Back = () => (
- 
-                <Link to="/welcome">
-                    <Button   variant="contained"  color = 'primary' style={{width: "100px"}}>
-                            Back
-                    </Button>
-                </Link>
-            )
+
+    <Link to="/welcome">
+        <IconButton color="primary" aria-label="upload picture" component="span">
+            <ArrowBackRoundedIcon backgroundcolor = "primary" style={{ fontSize: 80 }}/>
+        </IconButton>
+    </Link>
+)
 
 export default Back

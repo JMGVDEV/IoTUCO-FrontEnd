@@ -1,7 +1,5 @@
 import React from 'react'
 import { FormGroup, FormControl, FormText, FormCheck, } from "react-bootstrap";
-import '../components/styles/StylesWelcome.css'
-import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import '../components/styles/StylesWelcome.css'
@@ -9,9 +7,8 @@ import Grid from '@material-ui/core/Grid'
 import { Redirect } from 'react-router-dom'
 import LockIcon from '@material-ui/icons/Lock';
 import Button from '@material-ui/core/Button'
-import location from 'react-location'
 
-class PageNew extends React.Component {
+class LoginPage extends React.Component {
 
     state = { email: '', password: '' }
     onChange = (event) => {
@@ -33,8 +30,40 @@ class PageNew extends React.Component {
             redirect: 'follow'
         };
 
-        fetch("http://iooost-8a231f20.localhost.run/api/login", requestOptions)
+        fetch("http://3.22.57.173:3000/api/login", requestOptions)
             //.then(response => response.text())
+            .then(function (response) {
+                console.log('response.body =', response.body);
+                console.log('response.bodyUsed =', response.bodyUsed);
+                console.log('response.headers =', response.headers);
+                console.log('response.ok =', response.ok);
+                console.log('response.status =', response.status);
+                console.log('response.statusText =', response.statusText);
+                console.log('response.type =', response.type);
+                console.log('response.url =', response.url);
+                if (!response.ok) {
+                    throw new Error('Your user or password is wrong, please try again!');
+                }
+                return response.json();
+            })
+
+
+            .then(data => {
+                console.log('data=', data);
+                var token;
+                token = data.jwt;
+                console.log('Token=', token);
+                localStorage.setItem('token', token);
+                console.log(localStorage.getItem('token'));
+
+                if (data.ok === true) {
+                    this.setState({ login: true })
+                }
+
+            })
+
+
+            .catch(error => console.log('error', error))
             .then(result => {
                 console.log(result.ok)
                 console.log(result)
@@ -51,23 +80,24 @@ class PageNew extends React.Component {
         })
     }
     render() {
-        
-      
+
+
         if (!this.state.login) {
             return (
 
                 <div className="container" >
-                    <Container maxWidth="sm">
-                        <Box my={4}>
-                            <Typography variant="h2" color="textSecondary" align="center">
+                   
+                        <Box my={1}>
+                            <Typography variant="h2" style={{color:'green'}} align="center">
                                 Green House IoT
-            </Typography>
+                        </Typography>
                         </Box>
-                        <Box my={4} className='avatar' >
+                        <Grid container justify="center">   
+                        <Box my={2} className='avatar' alignItems="center" justifyContent="center" >
                             <LockIcon style={{ fontSize: 60 }} />
                         </Box>
-
-                    </Container>
+                        
+                    </Grid>
                     <Grid container justify="center">
                         <form>
 
@@ -83,23 +113,20 @@ class PageNew extends React.Component {
                             <FormGroup controlId="formBasicCheckbox">
                                 <FormCheck type="checkbox" label="Check me out" />
                             </FormGroup>
-                            
-                            <Button onClick={this.Upload} variant = 'contained' color = 'primary' style={{width: "370px"}} >Entrar</Button>
+
+                            <Button onClick={this.Upload} variant='contained' color='primary' style={{ width: "370px" }} >Entrar</Button>
                         </form>
                     </Grid>
                 </div>
 
             )
         }
-       
+
         else {
-            if(document.referrer == 'http://localhost:3000/welcome'){
-                location.href = 'error.php';
-            return ( 
-            <Redirect to="/welcome"></Redirect>)
-        }}
+            return (<Redirect to="/welcome"></Redirect>)
+        }
     }
-    }
+}
 
 
-export default PageNew
+export default LoginPage
