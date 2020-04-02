@@ -10,13 +10,13 @@ import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, KeyboardTimePicker } from '@material-ui/pickers';
 import SettingsApplicationsOutlinedIcon from '@material-ui/icons/SettingsApplicationsOutlined';
 import '../components/styles/StylesWelcome.css'
-//const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+
 
 
 
 class ConfigActions extends React.Component {
     handleDateChange = (date) => {
-        //  setSelectedDate(date);
+        
     }
 
     render() {

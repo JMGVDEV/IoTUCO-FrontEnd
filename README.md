@@ -1,6 +1,7 @@
 para correr el codigo del frontEnd, es necesario installar los siguientes paquetes:
 -npm install @material-ui/core
 -npm install @date-io/date-fns
+-npm install --save react-router-dom
 
 ## Available Scripts
 
