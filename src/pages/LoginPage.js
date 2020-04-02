@@ -29,7 +29,7 @@ class LoginPage extends React.Component {
             body: urlencoded,
             redirect: 'follow'
         };
-
+        console.log(requestOptions.body)
         fetch("http://3.22.57.173:3000/api/login", requestOptions)
             //.then(response => response.text())
             .then(function (response) {

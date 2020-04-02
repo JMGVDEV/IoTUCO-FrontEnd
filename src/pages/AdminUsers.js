@@ -15,7 +15,7 @@ class AdminUsers extends React.Component {
         super(props)
     
         this.state = {
-             users:[],name:'',lastname:'',email:'',role:'role'
+             users:[],name:'',lastname:'',email:'',role:'role',password:''
         }
     }
     
@@ -173,7 +173,7 @@ class AdminUsers extends React.Component {
                             <FormControl autoComplete="on" value={this.state.email} onChange={this.onChangeEmail} type="email" placeholder="Enter email" style={{ width: "370px" }} />
                         </FormGroup>
                         <FormGroup controlId="formBasicPassword" >
-                            <FormControl autoComplete="on" value={this.state.password} onChange={this.onChangePassowrd} type="password" placeholder="Password" style={{ width: "370px" }} />
+                            <FormControl autoComplete="on" value={this.state.password} onChange={this.onChangePassword} type="password" placeholder="Password" style={{ width: "370px" }} />
                         </FormGroup>
                         <FormControl value={this.state.role} onChange={this.onChangeRole} as='select' className='list-User' >
                         <option value='admin' > admin </option>
