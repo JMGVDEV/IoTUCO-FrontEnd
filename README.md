@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+para correr el codigo del frontEnd, es necesario installar los siguientes paquetes:
+-npm install @material-ui/core
+-npm install @date-io/date-fns
 
 ## Available Scripts
 
