@@ -22,7 +22,7 @@ class AdminUsers extends React.Component {
 
     deleteUser = () => {
         var myHeaders = new Headers();
-        myHeaders.append("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTU4NDg5Njg1MiwiZXhwIjoxNTg2MTkyODUyfQ.hqbfxwzcUGKKwMTzDY2wq6es5h0zyrV-qTIWiyVnzoY");
+        myHeaders.append('token',localStorage.getItem('token'));
 
         var urlencoded = new URLSearchParams();
 
@@ -48,7 +48,7 @@ class AdminUsers extends React.Component {
 
     updateUser = () => {
         var myHeaders = new Headers();
-        myHeaders.append("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTU4NDg5Njg1MiwiZXhwIjoxNTg2MTkyODUyfQ.hqbfxwzcUGKKwMTzDY2wq6es5h0zyrV-qTIWiyVnzoY");
+        myHeaders.append('token',localStorage.getItem('token'));
 
         var urlencoded = new URLSearchParams();
         urlencoded.append("name", this.state.name);
@@ -87,9 +87,10 @@ class AdminUsers extends React.Component {
     }
 
     registerUser = () => {
-        var myHeaders = new Headers();
-        myHeaders.append("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTg1NDM5OTI1LCJleHAiOjE1ODY3MzU5MjV9.2tTKEVTFJWVJvrehmxgTQXoKOQFlQN_Z3sXmB7cj3XA");
 
+        var myHeaders = new Headers();
+        myHeaders.append('token',localStorage.getItem('token'));
+        
         var urlencoded = new URLSearchParams();
         urlencoded.append("name", this.state.name);
         urlencoded.append("last_name", this.state.lastname);
@@ -111,9 +112,10 @@ class AdminUsers extends React.Component {
     }
 
     componentDidMount = () => {
-        var myHeaders = new Headers();
-        myHeaders.append("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTg1NDM5OTI1LCJleHAiOjE1ODY3MzU5MjV9.2tTKEVTFJWVJvrehmxgTQXoKOQFlQN_Z3sXmB7cj3XA");
 
+        var myHeaders = new Headers();
+        myHeaders.append('token',localStorage.getItem('token'));
+           
         var requestOptions = {
             method: 'GET',
             headers: myHeaders,
