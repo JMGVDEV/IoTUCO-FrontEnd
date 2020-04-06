@@ -8,15 +8,15 @@ import DropdownItem from 'react-bootstrap/DropdownItem'
 import LogOut from '../components/LogOut'
 
 
-function Welcome(){
-   
-                  
+class WelcomePage extends React.Component {
+    
+        render() {
             return (
              <div className = 'container'>
                 <Grid container justify = "center">
                 <Box my={4}>
                     <Typography align = 'center' variant = "h2" style={{color:'blue'}} gutterBottom>
-                        Hello , how are you?
+                        Hello   {this.props.location.name}, how are you?
                     </Typography>
                     <Typography  variant = "h3" color="textSecondary" gutterBottom>
                         welcome to  this proyect!!
@@ -34,7 +34,8 @@ function Welcome(){
                 <LogOut/>      
               </div>
             )
+            }
           
 }   
 
-export default Welcome
+export default WelcomePage
