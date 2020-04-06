@@ -7,10 +7,20 @@ import Grid from '@material-ui/core/Grid'
 import { Redirect } from 'react-router-dom'
 import LockIcon from '@material-ui/icons/Lock';
 import Button from '@material-ui/core/Button'
+//https://documenter.getpostman.com/view/5902689/SzS2xoSC
 
 class LoginPage extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            email: '', password: '', name:''
+        }
 
-    state = { email: '', password: '' }
+      }
+
+   setUser = () =>{
+
+   }
     onChange = (event) => {
         this.setState({ email: event.target.value })
     }
@@ -29,9 +39,8 @@ class LoginPage extends React.Component {
             body: urlencoded,
             redirect: 'follow'
         };
-
+        console.log(requestOptions.body)
         fetch("http://3.22.57.173:3000/api/login", requestOptions)
-            //.then(response => response.text())
             .then(function (response) {
                 console.log('response.body =', response.body);
                 console.log('response.bodyUsed =', response.bodyUsed);
@@ -50,6 +59,7 @@ class LoginPage extends React.Component {
 
             .then(data => {
                 console.log('data=', data);
+                this.setState({name: data.name});
                 var token;
                 token = data.jwt;
                 console.log('Token=', token);
@@ -59,26 +69,20 @@ class LoginPage extends React.Component {
                 if (data.ok === true) {
                     this.setState({ login: true })
                 }
-
+                
             })
 
 
             .catch(error => console.log('error', error))
-            .then(result => {
-                console.log(result.ok)
-                console.log(result)
-                if (result.ok === true) {
-                    this.setState({ login: true })
-                }
-            })
-            .catch(error => console.log('error', error))
+
     }
 
-    handleChange = e => {
+    handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
+
     render() {
 
 
@@ -123,7 +127,7 @@ class LoginPage extends React.Component {
         }
 
         else {
-            return (<Redirect to="/welcome"></Redirect>)
+            return (<Redirect to={{pathname: '/welcome', name:this.state.name }} ></Redirect>)
         }
     }
 }

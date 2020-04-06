@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch} from 'react-router-dom'
-import MainPage from '../pages/LoginPage'
+import LoginPage from '../pages/LoginPage'
 import WelcomePage from '../pages/WelcomePage'
 import AdminUsers from '../pages/AdminUsers'
 import ConfigActions from'../pages/ConfigActions'
@@ -12,7 +12,7 @@ const App = () => (                                                     //de est
                                                                     
     <BrowserRouter>                                                                   
         <Switch>
-                <Route exact path = "/" component = {MainPage}/>
+                <Route exact path = "/" component = {LoginPage}/>
                 <Route exact path = "/welcome" component = {WelcomePage}/>
                 <Route exact path = "/adminusers" component = {AdminUsers}/>
                 <Route exact path = "/configactions" component = {ConfigActions}/>                

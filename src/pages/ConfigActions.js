@@ -12,8 +12,6 @@ import SettingsApplicationsOutlinedIcon from '@material-ui/icons/SettingsApplica
 import '../components/styles/StylesWelcome.css'
 
 
-
-
 class ConfigActions extends React.Component {
     handleDateChange = (date) => {
         
@@ -79,12 +77,12 @@ class ConfigActions extends React.Component {
                 <Grid container justify="center" >
                     <div class="btn-group" role="group">
                         <DropdownButton id="dropdown-basic-button" title="INVERNADERO">
-                            <Dropdown.Item as="button"> CAMA 1 </Dropdown.Item>
-                            <Dropdown.Item as="button"> CAMA 2 </Dropdown.Item>
-                            <Dropdown.Item as="button"> CAMA 3 </Dropdown.Item>
-                            <Dropdown.Item as="button"> CAMA 4 </Dropdown.Item>
-                            <Dropdown.Item as="button"> CAMA 5 </Dropdown.Item>
-                            <Dropdown.Item as="button"> CAMA 6 </Dropdown.Item>
+                            <Dropdown.Item as="button"> INVERNADERO 1 </Dropdown.Item>
+                            <Dropdown.Item as="button"> INVERNADERO 2 </Dropdown.Item>
+                            <Dropdown.Item as="button"> INVERNADERO 3 </Dropdown.Item>
+                            <Dropdown.Item as="button"> INVERNADERO 4 </Dropdown.Item>
+                            <Dropdown.Item as="button"> INVERNADERO 5 </Dropdown.Item>
+                            <Dropdown.Item as="button"> INVERNADERO 6 </Dropdown.Item>
                         </DropdownButton>{''}
                         <Button></Button>{''}
                         <Button variant="contained" color="primary" className='create'>
