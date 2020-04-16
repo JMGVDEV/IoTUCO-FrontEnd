@@ -32,7 +32,7 @@ class TestQR extends Component {
       redirect: 'follow'
     };
 
-    fetch("http://3.22.57.173:3000/api/grow_beds/"+1, requestOptions)
+    fetch("http://3.22.57.173:3000/api/grow_beds/"+this.state.result, requestOptions)
       .then(response => response.text())
       .then(result =>{ 
         let json = JSON.parse(result)
