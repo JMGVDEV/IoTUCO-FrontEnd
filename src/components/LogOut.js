@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 const LogOut = () => (
  
                 <Link to="/">
-                    <Button type="submit" className="center aligned" variant="contained" fullWidth color = 'primary' style={{width: "100px"}}  >
+                    <Button onClick={() => localStorage.clear()} type="submit" className="left" variant="contained" fullWidth color = 'primary' style={{width: "100px"}}  >
                             LOG OUT
                     </Button>
                 </Link>
