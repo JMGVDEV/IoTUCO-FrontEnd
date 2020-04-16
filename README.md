@@ -2,7 +2,7 @@ para correr el codigo del frontEnd, es necesario installar los siguientes paquet
 -npm install @material-ui/core
 -npm install @date-io/date-fns
 -npm install --save react-router-dom
-
+-npm install --save react-qr-scanner
 ## Available Scripts
 
 In the project directory, you can run:

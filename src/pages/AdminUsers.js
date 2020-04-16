@@ -9,6 +9,8 @@ import { FormGroup, FormControl } from "react-bootstrap"
 import Button from '@material-ui/core/Button'
 import SupervisorAccountOutlinedIcon from '@material-ui/icons/SupervisorAccountOutlined';
 import '../components/styles/StylesWelcome.css'
+import LogOut from '../components/LogOut'
+
 
 class AdminUsers extends React.Component {
     constructor(props) {
@@ -18,9 +20,13 @@ class AdminUsers extends React.Component {
              users:[],name:'',lastname:'',email:'',role:'role',password:''
         }
     }
+    reload = () => {
+        return(window.location.replace(''))
+    }
     
 
     deleteUser = () => {
+        this.reload()
         var myHeaders = new Headers();
         myHeaders.append('token',localStorage.getItem('token'));
 
@@ -47,6 +53,7 @@ class AdminUsers extends React.Component {
     }
 
     updateUser = () => {
+        this.reload()
         var myHeaders = new Headers();
         myHeaders.append('token',localStorage.getItem('token'));
 
@@ -86,7 +93,10 @@ class AdminUsers extends React.Component {
         this.setState({ password: event.target.value })
     }
 
+
     registerUser = () => {
+
+        this.reload()
 
         var myHeaders = new Headers();
         myHeaders.append('token',localStorage.getItem('token'));
@@ -127,6 +137,9 @@ class AdminUsers extends React.Component {
             .then(result => {
                 let json = JSON.parse(result)
                 console.log(json)
+                if(json.ok===false){
+                    localStorage.clear()
+                }
                 this.setState({ users: json.users })
             })
             .catch(error => console.log('error', error));
@@ -157,7 +170,8 @@ class AdminUsers extends React.Component {
                 </Grid>
                 <Grid container justify="center" >
                     <DropdownButton id="dropdown-basic-button" title="Registered Users" onChange={this.selectOption}>
-                        {this.state.users && (this.state.users.map(user => <DropdownItem onClick={(e)=>{this.getId(e,user)}} key={user.id}>{user.name}</DropdownItem>))}
+                        {this.state.users && (this.state.users.map(user =>
+                             <DropdownItem onClick={(e)=>{this.getId(e,user)}} key={user.id}>{user.name}</DropdownItem>))}
 
                     </DropdownButton>
                 </Grid>
@@ -165,6 +179,7 @@ class AdminUsers extends React.Component {
                 </Typography>
                 <Grid container justify="center">
                     <form >
+                    
                         <FormGroup controlId="formBasicName" >
                             <FormControl autoComplete="on" value={this.state.name} onChange={this.onChangeName} type="text" placeholder="name" style={{ width: "370px" }} />
                         </FormGroup>
@@ -187,20 +202,29 @@ class AdminUsers extends React.Component {
 
                 <Grid container justify="center">
                     <div>
+   
                         <Button onClick={this.registerUser} variant="contained" color="primary" className='create'>
                             Create
                         </Button>{'  '}
-
+                        
                         <Button onClick={this.deleteUser} variant="contained" color="primary" className='delete'>
                             Delete
                         </Button>{'  '}
 
                         <Button onClick={this.updateUser} variant="contained" color="primary" className='update'>
                             Update
-                        </Button>{'  '}
+                        </Button>
+
+
+                        
                     </div>
+                    
                 </Grid>
+                <Grid container spacing={1}>
                 <Back />
+                </Grid>
+                <LogOut />
+                
             </div>
 
         )

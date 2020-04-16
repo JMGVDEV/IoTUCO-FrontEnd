@@ -9,13 +9,21 @@
     margin-bottom: 200px;
     Color: rgb(32, 32, 170);
 }
+.logout {
 
+    margin-left: 10px;
+}
 .delete {
     margin-top: 50px;
     margin-bottom: 50px;
     margin-left: 500px;
 }
 .create {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 250px;
+}
+.config {
     margin-top: 50px;
     margin-bottom: 50px;
     margin-left: 250px;
