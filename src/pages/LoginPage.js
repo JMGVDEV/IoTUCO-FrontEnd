@@ -62,7 +62,6 @@ class LoginPage extends React.Component {
                 this.setState({name: data.name});
                 var token;
                 token = data.jwt;
-                console.log('Token=', token);
                 localStorage.setItem('token', token);
                 console.log(localStorage.getItem('token'));
 
