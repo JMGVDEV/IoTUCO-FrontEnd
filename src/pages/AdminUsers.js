@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button'
 import SupervisorAccountOutlinedIcon from '@material-ui/icons/SupervisorAccountOutlined';
 import '../components/styles/StylesWelcome.css'
 import LogOut from '../components/LogOut'
+import {NotificationContainer, NotificationManager} from 'react-notifications'
 
 
 class AdminUsers extends React.Component {
@@ -20,12 +21,24 @@ class AdminUsers extends React.Component {
              users:[],name:'',lastname:'',email:'',role:'role',password:''
         }
     }
-    reload = () => {
+    createNotificationC = (type) => {
+       NotificationManager.success( 'usuario creado correctamente');
+    }
+
+    createNotificationD = (type) => {
+        NotificationManager.success('usuario borrado correctamente');
+    }
+    createNotificationU = (type) => {
+        NotificationManager.success('usuario actualizado correctamente');
+    }
+        reload = () => {
         return(window.location.replace(''))
+        this.createNotification();
     }
     
 
     deleteUser = () => {
+        this.createNotificationD();
         this.reload()
         var myHeaders = new Headers();
         myHeaders.append('token',localStorage.getItem('token'));
@@ -53,7 +66,8 @@ class AdminUsers extends React.Component {
     }
 
     updateUser = () => {
-        this.reload()
+        this.createNotificationU();
+        this.reload();
         var myHeaders = new Headers();
         myHeaders.append('token',localStorage.getItem('token'));
 
@@ -95,9 +109,8 @@ class AdminUsers extends React.Component {
 
 
     registerUser = () => {
-
-        this.reload()
-
+        this.createNotificationC();
+        this.reload();
         var myHeaders = new Headers();
         myHeaders.append('token',localStorage.getItem('token'));
         
@@ -202,7 +215,8 @@ class AdminUsers extends React.Component {
 
                 <Grid container justify="center">
                     <div>
-   
+                    <hr/>
+                    <NotificationContainer />
                         <Button onClick={this.registerUser} variant="contained" color="primary" className='create'>
                             Create
                         </Button>{'  '}
@@ -215,7 +229,7 @@ class AdminUsers extends React.Component {
                             Update
                         </Button>
 
-
+                        
                         
                     </div>
                     
