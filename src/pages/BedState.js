@@ -1,43 +1,40 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import Back from "../components/Back";
-import Grid from "@material-ui/core/Grid";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import DropdownItem from "react-bootstrap/DropdownItem";
-import Button from "@material-ui/core/Button";
-import LocalFloristIcon from "@material-ui/icons/LocalFlorist";
-import "../components/styles/StylesWelcome.css";
-import LogOut from "../components/LogOut";
-import TextField from "@material-ui/core/TextField";
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import DropdownItem from 'react-bootstrap/DropdownItem';
+import Button from '@material-ui/core/Button';
+import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
+import TextField from '@material-ui/core/TextField';
 
 class BedState extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      disease: "",
-      obs: "",
-      bed: "",
+      disease: '',
+      obs: '',
+      bed: '',
     };
   }
 
   getDiseases = () => {
     var myHeaders = new Headers();
-    myHeaders.append("token", localStorage.getItem("token"));
+    myHeaders.append('token', localStorage.getItem('token'));
     var requestOptions = {
-      method: "GET",
+      method: 'GET',
       headers: myHeaders,
-      redirect: "follow",
+      redirect: 'follow',
     };
 
-    fetch("http://3.22.57.173:3000/api/pests", requestOptions)
+    fetch('http://3.22.57.173:3000/api/pests', requestOptions)
       .then((response) => response.text())
       .then((result) => {
         let json = JSON.parse(result);
         this.setState({ disease: json.pests });
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
 
   getIdDisaeses = (e, sick) => {
@@ -51,49 +48,52 @@ class BedState extends React.Component {
   Send = () => {
     console.log(this.state.obs);
     var myHeaders = new Headers();
-    myHeaders.append("token", localStorage.getItem("token"));
+    myHeaders.append('token', localStorage.getItem('token'));
     var urlencoded = new URLSearchParams();
-    urlencoded.append("zone", "1");
-    urlencoded.append("greenhouse", "1");
-    urlencoded.append("pest", this.state.desease);
-    urlencoded.append("observation", this.state.obs);
+    urlencoded.append('zone', '1');
+    urlencoded.append('greenhouse', '1');
+    urlencoded.append('pest', this.state.desease);
+    urlencoded.append('observation', this.state.obs);
 
     var requestOptions = {
-      method: "POST",
+      method: 'POST',
       headers: myHeaders,
       body: urlencoded,
-      redirect: "follow",
+      redirect: 'follow',
     };
 
-    fetch("http://3.22.57.173:3000/api/inspection/1", requestOptions)
+    fetch('http://3.22.57.173:3000/api/inspection/1', requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
 
   getEnv = () => {
     var myHeaders = new Headers();
-    myHeaders.append("token", localStorage.getItem("token"));
+    myHeaders.append('token', localStorage.getItem('token'));
 
     var requestOptions = {
-      method: "GET",
+      method: 'GET',
       headers: myHeaders,
-      redirect: "follow",
+      redirect: 'follow',
     };
 
-    fetch("http://3.22.57.173:3000/api/grow_beds/" + this.props.lacation.result, requestOptions)
+    fetch(
+      'http://3.22.57.173:3000/api/grow_beds/' + this.props.lacation.result,
+      requestOptions
+    )
       .then((response) => response.text())
       .then((result) => {
         let json = JSON.parse(result);
         this.setState({
           temp: json.environment.temperature,
           hum: json.environment.humidity,
-          bed: json.growbed
+          bed: json.growbed,
         });
         console.log(json.environment.temperature);
       })
 
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
 
   componentDidMount = () => {
@@ -117,7 +117,7 @@ class BedState extends React.Component {
           <Typography
             align="center"
             variant="h2"
-            style={{ color: "gray" }}
+            style={{ color: 'gray' }}
             gutterBottom
           >
             Bed State
@@ -138,7 +138,7 @@ class BedState extends React.Component {
             <Typography
               align="center"
               variant="h3"
-              style={{ color: "darkblue" }}
+              style={{ color: 'darkblue' }}
               gutterBottom
             >
               Cama {this.state.bed},Invernadero 1
@@ -146,7 +146,7 @@ class BedState extends React.Component {
             <Typography
               align="center"
               variant="h5"
-              style={{ color: "black" }}
+              style={{ color: 'black' }}
               gutterBottom
             >
               Peste:
@@ -154,7 +154,7 @@ class BedState extends React.Component {
             <Typography
               align="center"
               variant="h5"
-              style={{ color: "red" }}
+              style={{ color: 'red' }}
               gutterBottom
             >
               {this.state.desease}
@@ -172,13 +172,13 @@ class BedState extends React.Component {
             <Typography
               align="center"
               variant="h6"
-              style={{ color: "black" }}
+              style={{ color: 'black' }}
               gutterBottom
             >
               humedad: {this.state.hum} %
             </Typography>
           </Box>
-          {"   "}
+          {'   '}
 
           <Box
             component="div"
@@ -190,7 +190,7 @@ class BedState extends React.Component {
             <Typography
               align="center"
               variant="h6"
-              style={{ color: "black" }}
+              style={{ color: 'black' }}
               gutterBottom
             >
               temperatura: {this.state.temp}°c
@@ -246,10 +246,7 @@ class BedState extends React.Component {
           </Grid>
         </div>
 
-        <Grid container spacing={1}>
-          <Back />
-        </Grid>
-        <LogOut />
+        <Grid container spacing={1}></Grid>
       </div>
     );
   }

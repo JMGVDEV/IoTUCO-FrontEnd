@@ -1,0 +1,26 @@
+.layout {
+  background-color: white;
+}
+
+.icon {
+  font-size: 120px;
+  margin-top: 120px;
+  margin-bottom: 20px;
+}
+
+.navBar {
+  text-align: center;
+  height: 50px;
+  background-color: #272121;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navBar h3 {
+  color: #ececec;
+}
+
+.alert {
+  margin-top: 10px;
+}

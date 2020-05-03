@@ -1,19 +1,16 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import Back from "../components/Back";
-import Grid from "@material-ui/core/Grid";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import DropdownItem from "react-bootstrap/DropdownItem";
-import Button from "@material-ui/core/Button";
-import DateFnsUtils from "@date-io/date-fns";
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import DropdownItem from 'react-bootstrap/DropdownItem';
+import Button from '@material-ui/core/Button';
+import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
-} from "@material-ui/pickers";
-import SettingsApplicationsOutlinedIcon from "@material-ui/icons/SettingsApplicationsOutlined";
-import "../components/styles/StylesWelcome.css";
-import LogOut from "../components/LogOut";
+} from '@material-ui/pickers';
+import SettingsApplicationsOutlinedIcon from '@material-ui/icons/SettingsApplicationsOutlined';
 
 class ConfigActions extends React.Component {
   constructor(props) {
@@ -22,67 +19,65 @@ class ConfigActions extends React.Component {
     this.state = {
       greenHouse: [],
       growBed: [],
-      startHour: "",
-      finalHour: "",
+      startHour: '',
+      finalHour: '',
       selectedDate: new Date(),
-      
     };
   }
 
   reload = () => {
-    return window.location.replace("");
+    return window.location.replace('');
   };
 
   getBeds = () => {
     var myHeaders = new Headers();
-    myHeaders.append("token", localStorage.getItem("token"));
+    myHeaders.append('token', localStorage.getItem('token'));
     var requestOptions = {
-      method: "GET",
+      method: 'GET',
       headers: myHeaders,
-      redirect: "follow",
+      redirect: 'follow',
     };
 
-    fetch("http://3.22.57.173:3000/api/grow_beds", requestOptions)
+    fetch('http://3.22.57.173:3000/api/grow_beds', requestOptions)
       .then((response) => response.text())
       .then((result) => {
         let json = JSON.parse(result);
         this.setState({ growBed: json.grow_beds });
         console.log(this.state.growBed);
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
 
   hourConfig = () => {
-
     var myHeaders = new Headers();
-    myHeaders.append("token", localStorage.getItem("token"));
+    myHeaders.append('token', localStorage.getItem('token'));
     var urlencoded = new URLSearchParams();
-    urlencoded.append("zone", "1");
-    urlencoded.append("greenhouse", this.state.green_house);
-    urlencoded.append("growbed", this.state.grow_Bed);
-    urlencoded.append("value", "1");
-    urlencoded.append("time_init", this.state.starthour);
-    urlencoded.append("time_end", this.state.finalHour);
+    urlencoded.append('zone', '1');
+    urlencoded.append('greenhouse', this.state.green_house);
+    urlencoded.append('growbed', this.state.grow_Bed);
+    urlencoded.append('value', '1');
+    urlencoded.append('time_init', this.state.starthour);
+    urlencoded.append('time_end', this.state.finalHour);
 
     var requestOptions = {
-      method: "POST",
+      method: 'POST',
       headers: myHeaders,
       body: urlencoded,
-      redirect: "follow",
+      redirect: 'follow',
     };
 
-    fetch("http://3.22.57.173:3000/api/control/lights", requestOptions)
+    fetch('http://3.22.57.173:3000/api/control/lights', requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
 
   finalTime = (e) => {
     console.log(e);
     this.setState({ selectedDate: e });
     let date = new Date(e);
-    let str = date.toString("HH:mm:ss");
-    let time = str.split(" ")[4];
+    let str = date.toString('HH:mm:ss');
+    let time = str.split(' ')[4];
     this.setState({ finalHour: time });
   };
 
@@ -90,8 +85,8 @@ class ConfigActions extends React.Component {
     console.log(e);
     this.setState({ selectedDate: e });
     let date = new Date(e);
-    let str = date.toString("HH:mm:ss");
-    let time = str.split(" ")[4];
+    let str = date.toString('HH:mm:ss');
+    let time = str.split(' ')[4];
     this.setState({ startHour: time });
   };
 
@@ -104,23 +99,23 @@ class ConfigActions extends React.Component {
   openBlinds = () => {
     this.reload();
     var myHeaders = new Headers();
-    myHeaders.append("token", localStorage.getItem("token"));
+    myHeaders.append('token', localStorage.getItem('token'));
     var urlencoded = new URLSearchParams();
-    urlencoded.append("zone", "1");
-    urlencoded.append("greenhouse", this.state.greenhouse);
-    urlencoded.append("value", "1");
+    urlencoded.append('zone', '1');
+    urlencoded.append('greenhouse', this.state.greenhouse);
+    urlencoded.append('value', '1');
 
     var requestOptions = {
-      method: "POST",
+      method: 'POST',
       headers: myHeaders,
       body: urlencoded,
-      redirect: "follow",
+      redirect: 'follow',
     };
 
-    fetch("http://3.22.57.173:3000/api/control/blinds", requestOptions)
+    fetch('http://3.22.57.173:3000/api/control/blinds', requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
 
   getIdHouse = (event, greenhouse) => {
@@ -131,22 +126,22 @@ class ConfigActions extends React.Component {
 
   getHouses = () => {
     var myHeaders = new Headers();
-    myHeaders.append("token", localStorage.getItem("token"));
+    myHeaders.append('token', localStorage.getItem('token'));
 
     var requestOptions = {
-      method: "GET",
+      method: 'GET',
       headers: myHeaders,
-      redirect: "follow",
+      redirect: 'follow',
     };
 
-    fetch("http://3.22.57.173:3000/api/grow_houses", requestOptions)
+    fetch('http://3.22.57.173:3000/api/grow_houses', requestOptions)
       .then((response) => response.text())
       .then((result) => {
         let json = JSON.parse(result);
         this.setState({ greenHouse: json.green_houses });
         console.log(this.state.greenHouse);
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
   componentDidMount = () => {
     this.getHouses();
@@ -168,7 +163,7 @@ class ConfigActions extends React.Component {
           <Typography
             align="center"
             variant="h2"
-            style={{ color: "gray" }}
+            style={{ color: 'gray' }}
             gutterBottom
           >
             Configure Actions
@@ -198,7 +193,7 @@ class ConfigActions extends React.Component {
                   }}
                   key={growbed.grow_bed}
                 >
-                 CAMA {growbed.growbed}
+                  CAMA {growbed.growbed}
                 </DropdownItem>
               ))}
           </DropdownButton>
@@ -213,7 +208,7 @@ class ConfigActions extends React.Component {
                 value={this.state.selectedDate}
                 onChange={this.startTime}
                 KeyboardButtonProps={{
-                  "aria-label": "change time",
+                  'aria-label': 'change time',
                 }}
               />
             </MuiPickersUtilsProvider>
@@ -225,7 +220,7 @@ class ConfigActions extends React.Component {
                 value={this.state.selectedDate}
                 onChange={this.finalTime}
                 KeyboardButtonProps={{
-                  "aria-label": "change time",
+                  'aria-label': 'change time',
                 }}
               />
             </MuiPickersUtilsProvider>
@@ -259,7 +254,7 @@ class ConfigActions extends React.Component {
                     }}
                     key={greenhouse.green_house}
                   >
-                   INVERNADERO {greenhouse.greenhouse}
+                    INVERNADERO {greenhouse.greenhouse}
                   </DropdownItem>
                 ))}
             </DropdownButton>
@@ -271,13 +266,10 @@ class ConfigActions extends React.Component {
               className="config"
             >
               ABRIR CORTINAS
-            </Button>{" "}
+            </Button>{' '}
           </div>
         </Grid>
-        <Grid container spacing={1}>
-          <Back />
-        </Grid>
-        <LogOut />
+        <Grid container spacing={1}></Grid>
       </div>
       //</div>
     );
