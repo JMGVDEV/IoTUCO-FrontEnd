@@ -2,23 +2,25 @@
  * URL SERVER
  */
 
-export const SERVER_URL = 'http://3.22.57.173:3000';
+const SERVER_URL = 'http://3.22.57.173:3000';
 
 /*
  * SERVER PATHS
  */
-export const LOGIN_URL = '/api/login';
-export const USERS_URL = '/api/users';
+const LOGIN_URL = '/api/login';
+const USERS_URL = '/api/users';
+const GROWBEDS_URL = '/api/grow_beds';
+const GREEN_HOUSES_URL = '/api/grow_houses';
 
 /*----------------------------------------------------------
 * 
 *                     API REQUESTS
 *
- ----------------------------------------------------------/*
+ ----------------------------------------------------------*/
 
-/*
- * User login
- */
+/*-----------------------------------------------------------
+ *                      Users requests
+ *----------------------------------------------------------*/
 
 export const loginUser = async (email, password) => {
   var urlencoded = new URLSearchParams();
@@ -44,9 +46,6 @@ export const loginUser = async (email, password) => {
   return;
 };
 
-/*
- * List all users
- */
 export const getAllUsers = async () => {
   var myHeaders = new Headers();
   myHeaders.append('token', localStorage.getItem('token'));
@@ -66,10 +65,6 @@ export const getAllUsers = async () => {
   let json = await response.json();
   return json.users;
 };
-
-/*
- * Crete user
- */
 
 export const createUser = async (user) => {
   var myHeaders = new Headers();
@@ -141,4 +136,70 @@ export const deleteUser = async (user) => {
   }
 
   return response.json;
+};
+
+/*-----------------------------------------------------------
+ *        Environment requests
+ *---------------------------------------------------------*/
+
+export const getGrowBedEnvironment = async (growbed_id) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+  let response = await fetch(
+    SERVER_URL + GROWBEDS_URL + `/${growbed_id}`,
+    requestOptions
+  );
+
+  if (!response.ok) {
+    throw new Error();
+  }
+
+  let json = await response.json();
+  return json.environment;
+};
+
+export const getGreenHouses = async () => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(SERVER_URL + GREEN_HOUSES_URL, requestOptions);
+
+  if (!response.ok) {
+    throw new Error();
+  }
+
+  let json = await response.json();
+  return json.green_houses;
+};
+
+export const getGrowBeds = async () => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(SERVER_URL + GROWBEDS_URL, requestOptions);
+
+  if (!response.ok) {
+    throw new Error();
+  }
+
+  let json = await response.json();
+  return json.grow_beds;
 };

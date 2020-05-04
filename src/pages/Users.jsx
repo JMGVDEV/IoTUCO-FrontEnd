@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Spinner } from 'react-bootstrap';
-import NavBarDark from '../components/NavBarDark.jsx';
+import NavBarDark from '../components/NavBarDark';
 import {
   NotificationContainer,
   NotificationManager,

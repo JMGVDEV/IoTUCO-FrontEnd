@@ -24,13 +24,11 @@ export default class NavBarDark extends Component {
 
         <Nav className="mr-auto">
           <Nav.Link href="/home">Inicio</Nav.Link>
-
           {this.isAdmin() && <Nav.Link href="/users">Usuarios</Nav.Link>}
-
-          <Nav.Link href="#camas">Camas</Nav.Link>
-
-          {this.isAdmin() && <Nav.Link href="#features">Acciones</Nav.Link>}
-
+          <Nav.Link href="/plagas">Plagas</Nav.Link>
+          {
+            //this.isAdmin() && <Nav.Link href="/features">Acciones</Nav.Link>
+          }
           <Nav.Link href="/">
             <span onClick={this.logout}> Salir </span>
           </Nav.Link>

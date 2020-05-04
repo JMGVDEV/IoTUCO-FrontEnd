@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
 import HomePage from '../pages/HomePage';
 import ConfigActions from '../pages/ConfigActions';
-import BedState from '../pages/BedState';
+import Diseases from '../pages/Diseases';
 import Users from '../pages/Users';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         <AuthenticatedRoute path="/home" component={HomePage} />
         <AuthenticatedRoute path="/users" component={Users} />
         <AuthenticatedRoute path="/configactions" component={ConfigActions} />
-        <AuthenticatedRoute path="/growbedstatus" component={BedState} />
+        <AuthenticatedRoute path="/plagas" component={Diseases} />
       </div>
     </Router>
   );
