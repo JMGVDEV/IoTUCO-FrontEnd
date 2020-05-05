@@ -31,8 +31,6 @@ class HomePage extends React.Component {
       <div className="body">
         <NavBarDark />
         <Row className="content">
-          <h3>{this.state.greenHouseId}</h3>
-          <h3>{this.state.growBedId}</h3>
           <Col className="col-md-4 w-100 shadow-lg filters">
             <Filters handleFiltersChange={this.handleFiltersChange} />
             <Form.Group>
