@@ -9,7 +9,8 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      growbed_id: null,
+      growBedId: null,
+      greenHouseId: null,
       interval: 3,
     };
   }
@@ -18,21 +19,22 @@ class HomePage extends React.Component {
     this.setState({ interval: e.target.value });
   };
 
-  setGrowBedId = (id) => {
-    this.setState({ growbed_id: id });
+  handleFiltersChange = (filters) => {
+    this.setState({
+      growBedId: filters.growBedId,
+      greenHouseId: filters.greenHouseId,
+    });
   };
 
   render() {
     return (
       <div className="body">
         <NavBarDark />
-
         <Row className="content">
+          <h3>{this.state.greenHouseId}</h3>
+          <h3>{this.state.growBedId}</h3>
           <Col className="col-md-4 w-100 shadow-lg filters">
-            <Filters
-              handleGrowBedChange={this.handleGrowBedChange}
-              setGrowBedId={this.setGrowBedId}
-            />
+            <Filters handleFiltersChange={this.handleFiltersChange} />
             <Form.Group>
               <Form.Label>Refrescar cada (segundos)</Form.Label>
               <Form.Control
