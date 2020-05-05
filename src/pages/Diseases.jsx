@@ -14,9 +14,9 @@ export default class Diseases extends React.Component {
 
         <Row className="content">
           <Col className="col-md-4 w-100 shadow-lg pt-3 mt-4 text-center justify-content-center">
-            AQUI VAN LOS FILTROS DE LA CAMA
+            AQUI VAN LOS FILTROS DE LA CAMA :)
           </Col>
-          <Col className="col-md-8">AQUI VA LA PARTE DE LAS ENFERMEDADES</Col>
+          <Col className="col-md-8">AQUI VA LA PARTE DE LAS ENFERMEDADES DE LAS PLANTAS</Col>
         </Row>
       </div>
     );
