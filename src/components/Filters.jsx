@@ -50,6 +50,10 @@ export default class Filters extends Component {
     this.props.setGrowBedId(grow_beds[0].growbed);
   };
 
+  handleGrowBedChange = (e) => {
+    this.props.setGrowBedId(e.target.value);
+  };
+
   render() {
     return (
       <div>
@@ -78,7 +82,7 @@ export default class Filters extends Component {
           <Form.Group>
             <Form.Label>Cama</Form.Label>
             <Form.Control
-              onChange={this.props.handleGrowBedChange}
+              onChange={this.handleGrowBedChange}
               as="select"
               required={true}
             >
@@ -89,17 +93,6 @@ export default class Filters extends Component {
                   </option>
                 ))}
             </Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId="formBasicRangeCustom">
-            <Form.Label>Refrescar cada (segundos)</Form.Label>
-            <Form.Control
-              defaultValue="3"
-              type="number"
-              max="30"
-              min="1"
-              onChange={this.props.handleIntervalChange}
-            />
           </Form.Group>
         </Form>
       </div>

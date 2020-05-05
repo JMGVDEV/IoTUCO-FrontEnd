@@ -1,150 +1,25 @@
 import React from 'react';
+import { Row, Col } from 'react-bootstrap';
+import NavBarDark from '../components/NavBarDark';
 
 class ConfigActions extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      greenHouse: [],
-      growBed: [],
-      startHour: '',
-      finalHour: '',
-      selectedDate: new Date(),
-    };
   }
 
-  reload = () => {
-    return window.location.replace('');
-  };
-
-  getBeds = () => {
-    var myHeaders = new Headers();
-    myHeaders.append('token', localStorage.getItem('token'));
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow',
-    };
-
-    fetch('http://3.22.57.173:3000/api/grow_beds', requestOptions)
-      .then((response) => response.text())
-      .then((result) => {
-        let json = JSON.parse(result);
-        this.setState({ growBed: json.grow_beds });
-        console.log(this.state.growBed);
-      })
-      .catch((error) => console.log('error', error));
-  };
-
-  hourConfig = () => {
-    var myHeaders = new Headers();
-    myHeaders.append('token', localStorage.getItem('token'));
-    var urlencoded = new URLSearchParams();
-    urlencoded.append('zone', '1');
-    urlencoded.append('greenhouse', this.state.green_house);
-    urlencoded.append('growbed', this.state.grow_Bed);
-    urlencoded.append('value', '1');
-    urlencoded.append('time_init', this.state.starthour);
-    urlencoded.append('time_end', this.state.finalHour);
-
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: urlencoded,
-      redirect: 'follow',
-    };
-
-    fetch('http://3.22.57.173:3000/api/control/lights', requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log('error', error));
-  };
-
-  finalTime = (e) => {
-    console.log(e);
-    this.setState({ selectedDate: e });
-    let date = new Date(e);
-    let str = date.toString('HH:mm:ss');
-    let time = str.split(' ')[4];
-    this.setState({ finalHour: time });
-  };
-
-  startTime = (e) => {
-    console.log(e);
-    this.setState({ selectedDate: e });
-    let date = new Date(e);
-    let str = date.toString('HH:mm:ss');
-    let time = str.split(' ')[4];
-    this.setState({ startHour: time });
-  };
-
-  getIdBed = (event, growbed) => {
-    this.setState({ grow_bed: growbed.grow_bed });
-
-    console.log(growbed);
-  };
-
-  openBlinds = () => {
-    this.reload();
-    var myHeaders = new Headers();
-    myHeaders.append('token', localStorage.getItem('token'));
-    var urlencoded = new URLSearchParams();
-    urlencoded.append('zone', '1');
-    urlencoded.append('greenhouse', this.state.greenhouse);
-    urlencoded.append('value', '1');
-
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: urlencoded,
-      redirect: 'follow',
-    };
-
-    fetch('http://3.22.57.173:3000/api/control/blinds', requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log('error', error));
-  };
-
-  getIdHouse = (event, greenhouse) => {
-    this.setState({ green_house: greenhouse.green_house });
-
-    console.log(greenhouse);
-  };
-
-  getHouses = () => {
-    var myHeaders = new Headers();
-    myHeaders.append('token', localStorage.getItem('token'));
-
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow',
-    };
-
-    fetch('http://3.22.57.173:3000/api/grow_houses', requestOptions)
-      .then((response) => response.text())
-      .then((result) => {
-        let json = JSON.parse(result);
-        this.setState({ greenHouse: json.green_houses });
-        console.log(this.state.greenHouse);
-      })
-      .catch((error) => console.log('error', error));
-  };
-  componentDidMount = () => {
-    this.getHouses();
-    this.getBeds();
-  };
-
-  handleChange = (e) => {
-    this.setState({
-      [e.target.greenHouse]: e.target.value,
-      [e.target.growBed]: e.target.value,
-    });
-  };
-
   render() {
-    return null;
+    return (
+      <div className="body">
+        <NavBarDark />
+
+        <Row className="content">
+          <Col className="col-md-4 w-100 shadow-lg pt-3 mt-4 text-center justify-content-center">
+            AQUI VAN LOS FILTROS DE LA CAMA O el invernadero
+          </Col>
+          <Col className="col-md-8">AQUI SE CONFUGURAN LAS ACCIONES</Col>
+        </Row>
+      </div>
+    );
   }
 }
 export default ConfigActions;

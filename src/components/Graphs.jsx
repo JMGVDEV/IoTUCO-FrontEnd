@@ -41,7 +41,7 @@ export default class Graphs extends Component {
     if (!this.props.growbed_id) {
       return;
     }
-
+    console.log('fetch' + this.props.growbed_id);
     try {
       let environment = await getGrowBedEnvironment(this.props.growbed_id);
       this.setState({
