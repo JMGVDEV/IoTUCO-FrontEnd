@@ -9,8 +9,9 @@ export default class Filters extends Component {
     super(props);
 
     this.state = {
-      grow_beds: null,
-      green_houses: null,
+      growBeds: null,
+      greenHouses: null,
+      greenHouseId: null,
     };
   }
 
@@ -27,27 +28,42 @@ export default class Filters extends Component {
       return;
     }
 
-    this.setState({ green_houses: values[1] });
-    this.all_grow_beds = values[0];
+    this.allGrowBeds = values[0];
 
-    let green_house = values[1][0].greenhouse;
-    let grow_beds = this.all_grow_beds.filter(
-      (grow_bed) => grow_bed.greenhouse == green_house
+    let greenHouseId = values[1][0].greenhouse;
+    let growBeds = this.allGrowBeds.filter(
+      (growBed) => growBed.greenhouse == greenHouseId
     );
 
-    this.setState({ grow_beds });
-    this.props.setGrowBedId(grow_beds[0].growbed);
+    this.setState({ greenHouses: values[1], growBeds, greenHouseId });
+
+    this.props.handleFiltersChange({
+      growBedId: growBeds[0].growbed,
+      greenHouseId: greenHouseId,
+    });
   };
 
   filterGrowBeds = (e) => {
-    let green_house = e.target.value;
+    let greenHouseId = e.target.value;
 
-    let grow_beds = this.all_grow_beds.filter(
-      (grow_bed) => grow_bed.greenhouse == green_house
+    let growBeds = this.allGrowBeds.filter(
+      (growBed) => growBed.greenhouse == greenHouseId
     );
 
-    this.setState({ grow_beds });
-    this.props.setGrowBedId(grow_beds[0].growbed);
+    this.setState({ growBeds, greenHouseId });
+
+    this.props.handleFiltersChange({
+      growBedId: growBeds[0].growbed,
+      greenHouseId: greenHouseId,
+    });
+  };
+
+  handleGrowBedChange = (e) => {
+    let growBedId = e.target.value;
+    this.props.handleFiltersChange({
+      growBedId,
+      greenHouseId: this.state.greenHouseId,
+    });
   };
 
   render() {
@@ -66,8 +82,8 @@ export default class Filters extends Component {
               as="select"
               required={true}
             >
-              {this.state.green_houses &&
-                this.state.green_houses.map((green_house, idx) => (
+              {this.state.greenHouses &&
+                this.state.greenHouses.map((green_house, idx) => (
                   <option key={idx} value={green_house.greenhouse}>
                     Invernadero {green_house.greenhouse}
                   </option>
@@ -78,28 +94,17 @@ export default class Filters extends Component {
           <Form.Group>
             <Form.Label>Cama</Form.Label>
             <Form.Control
-              onChange={this.props.handleGrowBedChange}
+              onChange={this.handleGrowBedChange}
               as="select"
               required={true}
             >
-              {this.state.grow_beds &&
-                this.state.grow_beds.map((grow_bed, idx) => (
+              {this.state.growBeds &&
+                this.state.growBeds.map((grow_bed, idx) => (
                   <option key={idx} value={grow_bed.growbed}>
                     Cama {grow_bed.growbed}
                   </option>
                 ))}
             </Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId="formBasicRangeCustom">
-            <Form.Label>Refrescar cada (segundos)</Form.Label>
-            <Form.Control
-              defaultValue="3"
-              type="number"
-              max="30"
-              min="1"
-              onChange={this.props.handleIntervalChange}
-            />
           </Form.Group>
         </Form>
       </div>
