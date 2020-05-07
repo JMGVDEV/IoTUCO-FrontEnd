@@ -46,7 +46,7 @@ export default class DisComp extends Component {
   render() {
     return (
       <React.Fragment>
-        <h5>Seleccione la(s) enfermedad(es):</h5>
+        <h5>SELECT DESEASES</h5>
         <Form onSubmit={this.onSubmit}>
           <Row className="mb-4">
             {this.state.diseases.map((disease, idx) => (
@@ -65,7 +65,7 @@ export default class DisComp extends Component {
 
           <Form.Group controlId="Observaciones">
             <Form.Label>
-              <h5>Ingrese observaciones:</h5>
+              <h5>OBSERVATIONS:</h5>
             </Form.Label>
             <Form.Control
               as="textarea"
@@ -81,7 +81,7 @@ export default class DisComp extends Component {
               variant="primary"
               className="btn-block w-50 "
             >
-              Guardar
+              SAVE
             </Button>
           </div>
         </Form>

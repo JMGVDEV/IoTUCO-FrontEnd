@@ -34,7 +34,7 @@ export default class Diseases extends React.Component {
           <Col className="col-md-8 px-5">
             <div>
               <div className="pt-3 text-center">
-                <h2> Cama #{this.state.growBedId}</h2>
+                <h2> BED {this.state.growBedId}</h2>
               </div>
             </div>
             <DisComp />
