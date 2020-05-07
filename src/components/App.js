@@ -14,7 +14,7 @@ function App() {
         <AuthenticatedRoute path="/home" component={HomePage} />
         <AuthenticatedRoute path="/users" component={Users} />
         <AuthenticatedRoute path="/configactions" component={ConfigActions} />
-        <AuthenticatedRoute path="/plagas" component={Diseases} />
+        <AuthenticatedRoute path="/diseases" component={Diseases} />
       </div>
     </Router>
   );

@@ -81,7 +81,7 @@ export default class UserCard extends Component {
               {this.props.users.map((user) => {
                 return (
                   <option value={user.name} key={user.id}>
-                    {user.name}
+                    {`${user.name} ${user.last_name || ''}`}
                   </option>
                 );
               })}

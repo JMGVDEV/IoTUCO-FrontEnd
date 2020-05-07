@@ -1,19 +1,31 @@
-import React, { Component } from "react";
-import { Form } from "react-bootstrap";
+import React, { Component } from 'react';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 
 export default class DisComp extends Component {
   constructor(props) {
     super(props);
     this.checkedDiseases = [];
+    this.Observations = '';
     this.state = {
-      diseases: ["Cenicillas", "Manchas", "Roya", "Pudriciones"],
+      diseases: [
+        'Cenicillas',
+        'Manchas',
+        'Roya',
+        'Pudriciones',
+        'Cenicillas',
+        'Manchas',
+        'Roya',
+        'Pudriciones',
+        'Cenicillas',
+        'Manchas',
+        'Roya',
+        'Pudriciones',
+      ],
     };
   }
 
   // React Checkboxes onChange Methods
   onChangeDisease = (e) => {
-    console.log(e.target.checked);
-    console.log(e.target.value);
     if (e.target.checked) {
       this.checkedDiseases.push(e.target.value);
     } else {
@@ -22,25 +34,24 @@ export default class DisComp extends Component {
   };
 
   onChangeObservation = (e) => {
-    this.Obs = [];
-    this.Obs.push(e.target.value);
+    this.Observations = e.target.value;
   };
 
   // Submit
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(this.checkedDiseases, this.Obs);
+    console.log(this.checkedDiseases, this.Observations);
   };
 
   render() {
     return (
-      <div className="Diseases">
+      <React.Fragment>
         <h5>Seleccione la(s) enfermedad(es):</h5>
         <Form onSubmit={this.onSubmit}>
-          <div style={{ padding: 30 }}>
-            <div className="form-check">
-              {this.state.diseases.map((disease) => (
-                <Form.Group controlId="formBasicCheckbox" key={disease}>
+          <Row className="mb-4">
+            {this.state.diseases.map((disease, idx) => (
+              <Col className="col-lg-2" key={idx}>
+                <Form.Group controlId="formBasicCheckbox">
                   <Form.Check
                     type="checkbox"
                     value={disease}
@@ -48,9 +59,9 @@ export default class DisComp extends Component {
                     onChange={this.onChangeDisease}
                   />
                 </Form.Group>
-              ))}
-            </div>
-          </div>
+              </Col>
+            ))}
+          </Row>
 
           <Form.Group controlId="Observaciones">
             <Form.Label>
@@ -58,18 +69,23 @@ export default class DisComp extends Component {
             </Form.Label>
             <Form.Control
               as="textarea"
-              rows="8"
+              rows="5"
               onChange={this.onChangeObservation}
             />
           </Form.Group>
 
-          <div className="text-center">
-            <div className="form-group">
-              <button className="btn btn-secondary">Guardar</button>
-            </div>
+          <div className="d-flex justify-content-center">
+            <Button
+              type="submit"
+              value="Submit"
+              variant="primary"
+              className="btn-block w-50 "
+            >
+              Guardar
+            </Button>
           </div>
         </Form>
-      </div>
+      </React.Fragment>
     );
   }
 }

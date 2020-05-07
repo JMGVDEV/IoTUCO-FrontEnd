@@ -7,7 +7,7 @@ export default class CreateUserForm extends Component {
     super(props);
 
     this.state = {
-      user: {},
+      user: { role: 'admin' },
     };
   }
 

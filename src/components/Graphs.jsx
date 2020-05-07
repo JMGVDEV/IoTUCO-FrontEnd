@@ -38,11 +38,11 @@ export default class Graphs extends Component {
   };
 
   getEnvironmentData = async () => {
-    if (!this.props.growbed_id) {
+    if (!this.props.growBedId) {
       return;
     }
     try {
-      let environment = await getGrowBedEnvironment(this.props.growbed_id);
+      let environment = await getGrowBedEnvironment(this.props.growBedId);
       this.setState({
         temperature: environment.temperature / 100,
         humidity: environment.humidity / 100,

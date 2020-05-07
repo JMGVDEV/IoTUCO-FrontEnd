@@ -47,7 +47,7 @@ class HomePage extends React.Component {
           <Col className="col-md-8">
             <Graphs
               interval={this.state.interval}
-              growbed_id={this.state.growbed_id}
+              growBedId={this.state.growBedId}
             />
           </Col>
         </Row>

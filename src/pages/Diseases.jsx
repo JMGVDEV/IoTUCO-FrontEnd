@@ -1,8 +1,8 @@
-import React from "react";
-import NavBarDark from "../components/NavBarDark";
-import { Row, Col } from "react-bootstrap";
-import Filters from "../components/Filters";
-import DisComp from "../components/DisComp";
+import React from 'react';
+import NavBarDark from '../components/NavBarDark';
+import { Row, Col } from 'react-bootstrap';
+import Filters from '../components/Filters';
+import DisComp from '../components/DiseaseForm';
 
 export default class Diseases extends React.Component {
   constructor(props) {
@@ -31,9 +31,9 @@ export default class Diseases extends React.Component {
           <Col className="col-md-4 w-100 shadow-lg pt-3 mt-4 text-center justify-content-center">
             <Filters handleFiltersChange={this.handleFiltersChange} />
           </Col>
-          <Col className="col-md-8">
-            <div style={{ padding: 50 }}>
-              <div className="text-center">
+          <Col className="col-md-8 px-5">
+            <div>
+              <div className="pt-3 text-center">
                 <h2> Cama #{this.state.growBedId}</h2>
               </div>
             </div>
