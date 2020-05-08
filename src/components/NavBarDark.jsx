@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { Navbar, Nav } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSeedling } from "@fortawesome/free-solid-svg-icons";
-import "../styles/navBar.css";
+import React, { Component } from 'react';
+import { Navbar, Nav } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSeedling } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import '../styles/navBar.css';
 
 export default class NavBarDark extends Component {
   logout = () => {
@@ -23,14 +24,27 @@ export default class NavBarDark extends Component {
         </Navbar.Brand>
 
         <Nav className="mr-auto">
-          <Nav.Link href="/home">Inicio</Nav.Link>
-          {this.isAdmin() && <Nav.Link href="/users">Usuarios</Nav.Link>}
-          {this.isAdmin() && <Nav.Link href="/diseases">Enfermedades</Nav.Link>}
+
+          <Nav.Link as={Link} to="/home">
+            Inicio
+          </Nav.Link>
           {this.isAdmin() && (
-            <Nav.Link href="/configactions">Acciones</Nav.Link>
+            <Nav.Link as={Link} to="/users">
+              Usuarios
+            </Nav.Link>
+          )}
+          {this.isAdmin() && (
+            <Nav.Link as={Link} to="/diseases">
+              Plagas
+            </Nav.Link>
+          )}
+          {this.isAdmin() && (
+            <Nav.Link as={Link} to="/configactions">
+              Acciones
+            </Nav.Link>
           )}
 
-          <Nav.Link href="/">
+          <Nav.Link as={Link} to="/">
             <span onClick={this.logout}> Salir </span>
           </Nav.Link>
         </Nav>
