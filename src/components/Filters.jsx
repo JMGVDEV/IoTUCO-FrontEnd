@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Form } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThermometerQuarter } from '@fortawesome/free-solid-svg-icons';
-import { getGrowBeds, getGreenHouses } from '../Utils/Api';
+import React, { Component } from "react";
+import { Form } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThermometerQuarter } from "@fortawesome/free-solid-svg-icons";
+import { getGrowBeds, getGreenHouses } from "../Utils/Api";
 
 export default class Filters extends Component {
   constructor(props) {
@@ -69,14 +69,16 @@ export default class Filters extends Component {
   render() {
     return (
       <div>
-        <h3>Seleccione una cama</h3>
+        <div className="pt-3 text-center">
+          <h3>Seleccione Cama:</h3>
+        </div>
         <div className="icon text-center p-0 m-0">
           <FontAwesomeIcon icon={faThermometerQuarter} color="#4D4D4D" />
         </div>
 
         <Form onSubmit={this.createUser}>
           <Form.Group>
-            <Form.Label>Invernadero</Form.Label>
+            <Form.Label>Invernadero:</Form.Label>
             <Form.Control
               onChange={this.filterGrowBeds}
               as="select"
@@ -92,7 +94,7 @@ export default class Filters extends Component {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Cama</Form.Label>
+            <Form.Label>Cama:</Form.Label>
             <Form.Control
               onChange={this.handleGrowBedChange}
               as="select"

@@ -1,17 +1,17 @@
-import React from 'react';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { Redirect } from 'react-router-dom';
-import { loginUser as login } from '../Utils/Api';
-import '../styles/login.css';
+import React from "react";
+import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { Redirect } from "react-router-dom";
+import { loginUser as login } from "../Utils/Api";
+import "../styles/login.css";
 
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       error: false,
       login: false,
     };
@@ -44,7 +44,7 @@ class LoginPage extends React.Component {
     const redirect = (
       <Redirect
         to={{
-          pathname: '/home',
+          pathname: "/home",
           state: { name: this.state.name },
         }}
       />
@@ -57,7 +57,7 @@ class LoginPage extends React.Component {
     return (
       <div className="layout">
         <div className="navBar">
-          <h3>Sistema de monitoreo de invernaderos</h3>
+          <h3>Sistema De Monitoreo Para Invernaderos - SIMIN</h3>
         </div>
 
         <Container className="layout">
@@ -69,22 +69,22 @@ class LoginPage extends React.Component {
 
               <Form>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Correo electrónico</Form.Label>
+                  <Form.Label>Correo Electrónico:</Form.Label>
                   <Form.Control
                     onChange={this.onChangeEmail}
                     value={this.state.email}
                     type="email"
-                    placeholder="Email"
+                    placeholder="Ingrese su e-mail aquí"
                   />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Contraseña</Form.Label>
+                  <Form.Label>Contraseña:</Form.Label>
                   <Form.Control
                     onChange={this.onChangePassword}
                     value={this.state.password}
                     type="password"
-                    placeholder="Contraseña"
+                    placeholder="**********"
                   />
                 </Form.Group>
 

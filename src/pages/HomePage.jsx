@@ -1,9 +1,9 @@
-import React from 'react';
-import NavBarDark from '../components/NavBarDark';
-import { Row, Col, Form } from 'react-bootstrap';
-import Filters from '../components/Filters';
-import Graphs from '../components/Graphs';
-import '../styles/home.css';
+import React from "react";
+import NavBarDark from "../components/NavBarDark";
+import { Row, Col, Form } from "react-bootstrap";
+import Filters from "../components/Filters";
+import Graphs from "../components/Graphs";
+import "../styles/home.css";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class HomePage extends React.Component {
           <Col className="col-md-4 w-100 shadow-lg filters">
             <Filters handleFiltersChange={this.handleFiltersChange} />
             <Form.Group>
-              <Form.Label>Refrescar cada (segundos)</Form.Label>
+              <Form.Label>Refrescar cada (segundos):</Form.Label>
               <Form.Control
                 defaultValue="3"
                 type="number"

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { Form, Button, Row, Col } from 'react-bootstrap';
-import { updateUser, deleteUser } from '../Utils/Api';
+import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { Form, Button, Row, Col } from "react-bootstrap";
+import { updateUser, deleteUser } from "../Utils/Api";
 
 export default class UserCard extends Component {
   constructor(props) {
@@ -23,13 +23,13 @@ export default class UserCard extends Component {
       await updateUser(user);
       await this.props.refreshUsers();
 
-      this.props.showNotification('success', 'Ok', 'Usuario actualizado');
+      this.props.showNotification("success", "Ok", "Usuario actualizado");
       this.props.setLoading(false);
     } catch (error) {
       this.props.showNotification(
-        'error',
-        'Error',
-        'Algo salió mal al actualizar el usuario'
+        "error",
+        "Error",
+        "Algo salió mal al actualizar el usuario"
       );
     }
     this.setState({ editing: false });
@@ -44,13 +44,13 @@ export default class UserCard extends Component {
       await this.props.refreshUsers();
       this.setState({ user: this.props.users[0] });
 
-      this.props.showNotification('success', 'Ok', 'Usuario eliminado');
+      this.props.showNotification("success", "Ok", "Usuario eliminado");
       this.props.setLoading(false);
     } catch (error) {
       this.props.showNotification(
-        'error',
-        'Error',
-        'Algo salió mal al eliminar el usuario'
+        "error",
+        "Error",
+        "Algo salió mal al eliminar el usuario"
       );
       this.props.setLoading(false);
     }
@@ -59,7 +59,7 @@ export default class UserCard extends Component {
 
   setUser = (event) => {
     if (!event.target.value) {
-      this.setState({ user: { name: '', last_name: '', email: '' } });
+      this.setState({ user: { name: "", last_name: "", email: "" } });
       return;
     }
 
@@ -70,7 +70,9 @@ export default class UserCard extends Component {
   render() {
     return (
       <React.Fragment>
-        <h3>Seleccione un usuario</h3>
+        <div className="pt-4 text-center">
+          <h3>Usuario:</h3>
+        </div>
 
         <Form>
           <Form.Group placeholder="Seleccione">
@@ -81,7 +83,7 @@ export default class UserCard extends Component {
               {this.props.users.map((user) => {
                 return (
                   <option value={user.name} key={user.id}>
-                    {`${user.name} ${user.last_name || ''}`}
+                    {`${user.name} ${user.last_name || ""}`}
                   </option>
                 );
               })}
@@ -136,7 +138,7 @@ export default class UserCard extends Component {
                   }
                   value={this.state.user.email}
                   type="text"
-                  placeholder="Email"
+                  placeholder="Correo Electrónico"
                   required={true}
                 />
               </Form.Group>
