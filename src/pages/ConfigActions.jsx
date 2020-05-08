@@ -15,7 +15,9 @@ import {
 class ConfigActions extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {growbed_id: ''}
+    this.state = {growBedId: '',greenHouseId: '',config: null, open: null}
+    this.open = 'open_blinds'
+    this.config = 'config_actions'
   }
 
 
@@ -36,13 +38,24 @@ class ConfigActions extends React.Component {
     this.setState({ finalHour: time });
   };
 
-  startTime = (e) => {
-    console.log(e);
-    this.setState({ selectedDate: e });
-    let date = new Date(e);
+  startTime = (event) => {
+    console.log(event);
+    this.setState({ selectedDate: event });
+    let date = new Date(event);
     let str = date.toString("HH:mm:ss");
     let time = str.split(" ")[4];
     this.setState({ startHour: time });
+  };
+
+  OpenBlinds = (e) => {
+    console.log(this.open);
+    
+  };
+
+  Configure = (e) => {
+    console.log(this.config);
+    
+    
   };
 
   render() {
@@ -92,28 +105,34 @@ class ConfigActions extends React.Component {
                 }}
               />
             </MuiPickersUtilsProvider>
-          </Grid>
+          </Grid >
           </div>
-          <div style={{ padding: 90 }}>
-          <Grid container justify="center">
+          <div style={{ padding: 50 }}>
+         
+          <Row className="justify-content-around w-100 m-0 px-8">
+          <Col className="col-md-5">
             <Button
-              onClick=''
-              variant="contained"
+              onClick={this.Configure}
+              variant="outlined"
+              value="Submit"
               color="primary"
-              className="configure"
+              className=" btn-block"
             >
               CONFIGURE
-            </Button>{" "}
-                <Button></Button>
+            </Button>
             <Button
-              onClick=''
-              variant="contained"
+              onClick={this.OpenBlinds}
+              variant="outlined"
+              value="Submit"
               color="primary"
-              className="config"
+              className=" btn-block"
             >
               OPEN BLINDS
-            </Button>{" "}
-          </Grid>
+            </Button>
+            </Col>
+            </Row>
+          
+          
         </div>
 
 
