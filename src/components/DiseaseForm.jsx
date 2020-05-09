@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { getDiseases } from '../Utils/Api';
 
 export default class DisComp extends Component {
   constructor(props) {
@@ -7,22 +8,18 @@ export default class DisComp extends Component {
     this.checkedDiseases = [];
     this.Observations = '';
     this.state = {
-      diseases: [
-        'Cenicillas',
-        'Manchas',
-        'Roya',
-        'Pudriciones',
-        'Cenicillas',
-        'Manchas',
-        'Roya',
-        'Pudriciones',
-        'Cenicillas',
-        'Manchas',
-        'Roya',
-        'Pudriciones',
-      ],
+      diseases: [],
     };
   }
+
+  componentWillMount = async () => {
+    try {
+      let diseases = await getDiseases();
+      this.setState({ diseases });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // React Checkboxes onChange Methods
   onChangeDisease = (e) => {
@@ -42,14 +39,14 @@ export default class DisComp extends Component {
     e.preventDefault();
     console.log(this.checkedDiseases, this.Observations);
     try {
-      this.props.setLoading(true);   
-      this.props.showNotification("success", "Ok", "Estado de la cama enviado");
+      this.props.setLoading(true);
+      this.props.showNotification('success', 'Ok', 'Estado de la cama enviado');
       this.props.setLoading(false);
     } catch (error) {
       this.props.showNotification(
-        "error",
-        "Error",
-        "Algo salió mal al enviar el estado de la cama"
+        'error',
+        'Error',
+        'Algo salió mal al enviar el estado de la cama',
       );
       this.props.setLoading(false);
     }
@@ -92,8 +89,7 @@ export default class DisComp extends Component {
               type="submit"
               value="Submit"
               variant="btn btn-outline-primary"
-              className="btn-block w-50 "
-            >
+              className="btn-block w-50 ">
               SAVE
             </Button>
           </div>

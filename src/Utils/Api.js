@@ -11,6 +11,7 @@ const LOGIN_URL = '/api/login';
 const USERS_URL = '/api/users';
 const GROWBEDS_URL = '/api/grow_beds';
 const GREEN_HOUSES_URL = '/api/grow_houses';
+const PEST_URL = '/api/pests';
 
 /*----------------------------------------------------------
 * 
@@ -103,7 +104,7 @@ export const updateUser = async (user) => {
 
   let response = await fetch(
     SERVER_URL + USERS_URL + `/${user.id}`,
-    requestOptions
+    requestOptions,
   );
 
   if (!response.ok) {
@@ -128,7 +129,7 @@ export const deleteUser = async (user) => {
 
   let response = await fetch(
     SERVER_URL + USERS_URL + `/${user.id}`,
-    requestOptions
+    requestOptions,
   );
 
   if (!response.ok) {
@@ -153,7 +154,7 @@ export const getGrowBedEnvironment = async (growbed_id) => {
   };
   let response = await fetch(
     SERVER_URL + GROWBEDS_URL + `/${growbed_id}`,
-    requestOptions
+    requestOptions,
   );
 
   if (!response.ok) {
@@ -202,4 +203,19 @@ export const getGrowBeds = async () => {
 
   let json = await response.json();
   return json.grow_beds;
+};
+
+export const getDiseases = async () => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(SERVER_URL + PEST_URL, requestOptions);
+  let json = await response.json();
+  return json.pests;
 };
