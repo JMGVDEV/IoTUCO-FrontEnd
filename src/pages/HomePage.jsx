@@ -1,9 +1,11 @@
-import React from "react";
-import NavBarDark from "../components/NavBarDark";
-import { Row, Col, Form } from "react-bootstrap";
-import Filters from "../components/Filters";
-import Graphs from "../components/Graphs";
-import "../styles/home.css";
+import React from 'react';
+import NavBarDark from '../components/NavBarDark';
+import { Row, Col, Form } from 'react-bootstrap';
+import Filters from '../components/Filters';
+import Graphs from '../components/Graphs';
+import ShowD from '../components/ShowingDisease';
+
+import '../styles/home.css';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -49,6 +51,11 @@ class HomePage extends React.Component {
               interval={this.state.interval}
               growBedId={this.state.growBedId}
             />
+            <Col>
+              <Row className=" pt-5 justify-content-center">
+                <ShowD />
+              </Row>
+            </Col>
           </Col>
         </Row>
       </div>
