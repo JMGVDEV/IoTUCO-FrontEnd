@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import GaugeChart from 'react-gauge-chart';
-import { Row, Col } from 'react-bootstrap';
-import { getGrowBedEnvironment } from '../Utils/Api';
-import '../styles/graphs.css';
+import React, { Component } from "react";
+import GaugeChart from "react-gauge-chart";
+import { Row, Col } from "react-bootstrap";
+import { getGrowBedEnvironment } from "../Utils/Api";
+import "../styles/graphs.css";
 
 export default class Graphs extends Component {
   constructor(props) {
@@ -55,7 +55,7 @@ export default class Graphs extends Component {
   render() {
     return (
       <div className="mt-4 text-center">
-        <h2>Variables ambientales</h2>
+        <h3>Variables Ambientales:</h3>
 
         <Row className=" pt-5 justify-content-center">
           <Col>
@@ -66,9 +66,9 @@ export default class Graphs extends Component {
               id="gauge-chart1"
               className="gauge"
               percent={this.state.temperature}
-              formatTextValue={(value) => value + '°'}
+              formatTextValue={(value) => value + "°"}
             />
-            <h3>Temperatura</h3>
+            <h3>Temperatura (°C)</h3>
           </Col>
 
           <Col>
@@ -78,9 +78,9 @@ export default class Graphs extends Component {
               percent={this.state.humidity}
               textColor="#777777"
               id="gauge-chart2"
-              formatTextValue={(value) => value + '%'}
+              formatTextValue={(value) => value + "%"}
             />
-            <h3>Humedad </h3>
+            <h3>Humedad (%)</h3>
           </Col>
         </Row>
       </div>

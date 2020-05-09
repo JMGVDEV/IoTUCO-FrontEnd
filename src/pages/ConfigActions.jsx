@@ -31,7 +31,7 @@ class ConfigActions extends React.Component {
 
   finalTime = (e) => {
     console.log(e);
-    this.setState({ selectedDate: e });
+    this.setState({ selectedDate2: e });
     let date = new Date(e);
     let str = date.toString("HH:mm:ss");
     let time = str.split(" ")[4];
@@ -40,7 +40,7 @@ class ConfigActions extends React.Component {
 
   startTime = (event) => {
     console.log(event);
-    this.setState({ selectedDate: event });
+    this.setState({ selectedDate1: event });
     let date = new Date(event);
     let str = date.toString("HH:mm:ss");
     let time = str.split(" ")[4];
@@ -86,19 +86,18 @@ class ConfigActions extends React.Component {
                 margin="normal"
                 id="start-time-picker"
                 label="Start Time"
-                value={this.state.selectedDate}
+                value={this.state.selectedDate1}
                 onChange={this.startTime}
                 KeyboardButtonProps={{
                   "aria-label": "change time",
                 }}
               />
-            </MuiPickersUtilsProvider>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
               <KeyboardTimePicker
                 margin="normal"
                 id="final-time-picker"
                 label="Final Time"
-                value={this.state.selectedDate}
+                value={this.state.selectedDate2}
                 onChange={this.finalTime}
                 KeyboardButtonProps={{
                   "aria-label": "change time",

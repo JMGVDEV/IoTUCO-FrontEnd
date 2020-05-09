@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Form } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThermometerQuarter } from '@fortawesome/free-solid-svg-icons';
-import { getGrowBeds, getGreenHouses } from '../Utils/Api';
+import React, { Component } from "react";
+import { Form } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThermometerQuarter } from "@fortawesome/free-solid-svg-icons";
+import { getGrowBeds, getGreenHouses } from "../Utils/Api";
 
 export default class Filters extends Component {
   constructor(props) {
@@ -69,14 +69,20 @@ export default class Filters extends Component {
   render() {
     return (
       <div>
-        <h3>SELECT GROW BED</h3>
+
+        <div className="pt-3 text-center">
+          <h3>SELECT GROW BED</h3>
+        </div>
+
         <div className="icon text-center p-0 m-0">
           <FontAwesomeIcon icon={faThermometerQuarter} color="#4D4D4D" />
         </div>
 
         <Form onSubmit={this.createUser}>
           <Form.Group>
+
             <Form.Label>GREEN HOUSES</Form.Label>
+
             <Form.Control
               onChange={this.filterGrowBeds}
               as="select"
