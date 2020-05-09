@@ -1,11 +1,62 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import NavBarDark from '../components/NavBarDark';
+import Filters from '../components/Filters'
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  } from '@material-ui/pickers';
 
 class ConfigActions extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {growBedId: '',greenHouseId: '',config: null, open: null}
+    this.open = 'open_blinds'
+    this.config = 'config_actions'
   }
+
+
+  handleFiltersChange = (filters) => {
+    this.setState({
+      growBedId: filters.growBedId,
+      greenHouseId: filters.greenHouseId,
+    });
+  };
+
+
+  finalTime = (e) => {
+    console.log(e);
+    this.setState({ selectedDate2: e });
+    let date = new Date(e);
+    let str = date.toString("HH:mm:ss");
+    let time = str.split(" ")[4];
+    this.setState({ finalHour: time });
+  };
+
+  startTime = (event) => {
+    console.log(event);
+    this.setState({ selectedDate1: event });
+    let date = new Date(event);
+    let str = date.toString("HH:mm:ss");
+    let time = str.split(" ")[4];
+    this.setState({ startHour: time });
+  };
+
+  OpenBlinds = (e) => {
+    console.log(this.open);
+    
+  };
+
+  Configure = (e) => {
+    console.log(this.config);
+    
+    
+  };
 
   render() {
     return (
@@ -14,9 +65,77 @@ class ConfigActions extends React.Component {
 
         <Row className="content">
           <Col className="col-md-4 w-100 shadow-lg pt-3 mt-4 text-center justify-content-center">
-            AQUI VAN LOS FILTROS DE LA CAMA O el invernadero
+            <Filters handleFiltersChange={this.handleFiltersChange} ></Filters>
           </Col>
-          <Col className="col-md-8">AQUI SE CONFUGURAN LAS ACCIONES</Col>
+
+          <Col className="col-md-8">
+          <Box my={1} alignItems="center" justifyContent="center">
+          <Typography
+            align="center"
+            variant="h3"
+            style={{ color: "gray" }}
+            gutterBottom
+          >
+            SELECT HOUR
+          </Typography>
+        </Box>
+        <div style={{ padding: 90 }}>
+          <Grid container justify="space-around">
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardTimePicker
+                margin="normal"
+                id="start-time-picker"
+                label="Start Time"
+                value={this.state.selectedDate1}
+                onChange={this.startTime}
+                KeyboardButtonProps={{
+                  "aria-label": "change time",
+                }}
+              />
+
+              <KeyboardTimePicker
+                margin="normal"
+                id="final-time-picker"
+                label="Final Time"
+                value={this.state.selectedDate2}
+                onChange={this.finalTime}
+                KeyboardButtonProps={{
+                  "aria-label": "change time",
+                }}
+              />
+            </MuiPickersUtilsProvider>
+          </Grid >
+          </div>
+          <div style={{ padding: 50 }}>
+         
+          <Row className="justify-content-around w-100 m-0 px-8">
+          <Col className="col-md-5">
+            <Button
+              onClick={this.Configure}
+              variant="outlined"
+              value="Submit"
+              color="primary"
+              className=" btn-block"
+            >
+              CONFIGURE
+            </Button>
+            <Button
+              onClick={this.OpenBlinds}
+              variant="outlined"
+              value="Submit"
+              color="primary"
+              className=" btn-block"
+            >
+              OPEN BLINDS
+            </Button>
+            </Col>
+            </Row>
+          
+          
+        </div>
+
+
+          </Col>
         </Row>
       </div>
     );
@@ -24,117 +143,4 @@ class ConfigActions extends React.Component {
 }
 export default ConfigActions;
 
-/*
-<div className="container">
-<Box my={1} alignItems="center" justifyContent="center">
-  <Typography
-    align="center"
-    variant="h2"
-    style={{ color: 'gray' }}
-    gutterBottom
-  >
-    Configure Actions
-  </Typography>
-</Box>
-<Grid container justify="center">
-  <Box
-    my={2}
-    className="avatar"
-    alignItems="center"
-    justifyContent="center"
-  >
-    <SettingsApplicationsOutlinedIcon style={{ fontSize: 80 }} />
-  </Box>
-</Grid>
-<Grid container justify="center">
-  <DropdownButton
-    id="dropdown-basic-button"
-    title="CAMAS"
-    onChange={this.selectOption}
-  >
-    {this.state.growBed &&
-      this.state.growBed.map((growbed) => (
-        <DropdownItem
-          onClick={(e) => {
-            this.getIdBed(e, growbed);
-          }}
-          key={growbed.grow_bed}
-        >
-          CAMA {growbed.growbed}
-        </DropdownItem>
-      ))}
-  </DropdownButton>
-</Grid>
-<div style={{ padding: 50 }}>
-  <Grid container justify="space-around">
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <KeyboardTimePicker
-        margin="normal"
-        id="start-time-picker"
-        label="Start Time"
-        value={this.state.selectedDate}
-        onChange={this.startTime}
-        KeyboardButtonProps={{
-          'aria-label': 'change time',
-        }}
-      />
-    </MuiPickersUtilsProvider>
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <KeyboardTimePicker
-        margin="normal"
-        id="final-time-picker"
-        label="Final Time"
-        value={this.state.selectedDate}
-        onChange={this.finalTime}
-        KeyboardButtonProps={{
-          'aria-label': 'change time',
-        }}
-      />
-    </MuiPickersUtilsProvider>
-  </Grid>
-</div>
-<div style={{ padding: 30 }}>
-  <Grid container justify="center">
-    <Button
-      onClick={this.hourConfig}
-      variant="contained"
-      color="primary"
-      className="configure"
-    >
-      CONFIGURAR
-    </Button>
-  </Grid>
-</div>
 
-<Grid container justify="center">
-  <div className="btn-group">
-    <DropdownButton
-      id="dropdown-basic-button"
-      title="INVERNADEROS"
-      onChange={this.selectOption}
-    >
-      {this.state.greenHouse &&
-        this.state.greenHouse.map((greenhouse) => (
-          <DropdownItem
-            onClick={(e) => {
-              this.getIdHouse(e, greenhouse);
-            }}
-            key={greenhouse.green_house}
-          >
-            INVERNADERO {greenhouse.greenhouse}
-          </DropdownItem>
-        ))}
-    </DropdownButton>
-    <Button></Button>
-    <Button
-      onClick={this.openBlinds}
-      variant="contained"
-      color="primary"
-      className="config"
-    >
-      ABRIR CORTINAS
-    </Button>{' '}
-  </div>
-</Grid>
-<Grid container spacing={1}></Grid>
-</div>*/
