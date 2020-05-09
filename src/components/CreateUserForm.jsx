@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import { createUser } from "../Utils/Api";
+import React, { Component } from 'react';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import { createUser } from '../Utils/Api';
 
 export default class CreateUserForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: { role: "admin" },
+      user: { role: 'admin' },
     };
   }
 
@@ -16,9 +16,9 @@ export default class CreateUserForm extends Component {
 
     if (this.state.user.password !== this.state.user.password_v) {
       this.props.showNotification(
-        "error",
-        "Error",
-        "Las contraseñas no coinciden"
+        'error',
+        'Error',
+        'Las contraseñas no coinciden'
       );
       return;
     }
@@ -32,15 +32,15 @@ export default class CreateUserForm extends Component {
       this.props.refreshUsers();
 
       this.props.showNotification(
-        "success",
-        "Ok",
-        "El usuario se ha creado satisfactoriamente"
+        'success',
+        'Ok',
+        'El usuario se ha creado satisfactoriamente'
       );
     } catch (error) {
       this.props.showNotification(
-        "error",
-        "Error",
-        "¡Ups!, algo salió mal al crear el usuario"
+        'error',
+        'Error',
+        '¡Ups!, algo salió mal al crear el usuario'
       );
     }
 

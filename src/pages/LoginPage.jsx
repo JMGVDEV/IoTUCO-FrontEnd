@@ -25,7 +25,9 @@ class LoginPage extends React.Component {
     this.setState({ password: event.target.value });
   };
 
-  loginUser = async () => {
+  loginUser = async (e) => {
+    e.preventDefault();
+
     try {
       await login(this.state.email, this.state.password);
       this.setState({ error: false, login: true });
@@ -67,7 +69,7 @@ class LoginPage extends React.Component {
                 <FontAwesomeIcon icon={faUser} classame="usr" color="#4D4D4D" />
               </div>
 
-              <Form>
+              <Form onSubmit={this.loginUser}>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Correo Electrónico:</Form.Label>
                   <Form.Control
@@ -88,11 +90,7 @@ class LoginPage extends React.Component {
                   />
                 </Form.Group>
 
-                <Button
-                  variant="primary"
-                  onClick={this.loginUser}
-                  className="btn-block"
-                >
+                <Button type="submit" variant="primary" className="btn-block">
                   Entrar
                 </Button>
               </Form>
