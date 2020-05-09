@@ -1,9 +1,9 @@
 import React from 'react';
 import NavBarDark from '../components/NavBarDark';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Spinner } from 'react-bootstrap';
 import Filters from '../components/Filters';
-import DisComp from '../components/DiseaseForm';
-import Typography from "@material-ui/core/Typography";
+import DiseaseForm from '../components/DiseaseForm';
+import Typography from '@material-ui/core/Typography';
 import {
   NotificationContainer,
   NotificationManager,
@@ -14,10 +14,10 @@ export default class Diseases extends React.Component {
   constructor(props) {
     super(props);
     this.checkedDiseases = [];
-    // Checkbox Initial State
     this.state = {
       growBedId: null,
       greenHouseId: null,
+      loading: false,
     };
   }
 
@@ -46,7 +46,6 @@ export default class Diseases extends React.Component {
     }
   };
 
-
   render() {
     return (
       <div className="body">
@@ -60,20 +59,25 @@ export default class Diseases extends React.Component {
             <div>
               <div className="pt-3 text-center">
                 <Typography
-                                align="center"
-                                variant="h3"
-                                style={{ color: "gray" }}
-                                gutterBottom
-                            >
-                                 Bed {this.state.growBedId}
+                  align="center"
+                  variant="h3"
+                  style={{ color: 'gray' }}
+                  gutterBottom>
+                  Bed {this.state.growBedId}
                 </Typography>
-                
               </div>
             </div>
-            <DisComp              
-             showNotification={this.showNotification}
-             setLoading={this.setLoading}
-             />
+            <DiseaseForm
+              showNotification={this.showNotification}
+              setLoading={this.setLoading}
+              growBedId={this.state.growBedId}
+              greenHouseId={this.state.greenHouseId}
+            />
+            {this.state.loading && (
+              <div className="justify-content-center d-flex py-5">
+                <Spinner animation="border" role="status"></Spinner>
+              </div>
+            )}
           </Col>
         </Row>
       </div>

@@ -62,7 +62,7 @@ export default class Users extends React.Component {
         <NavBarDark></NavBarDark>
         <NotificationContainer />
 
-        <Row className="mt-3 mx-2">
+        <Row className="mt-2 mx-2">
           <Col className="col-sm-3">
             <UserCard
               users={this.state.users}

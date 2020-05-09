@@ -30,7 +30,7 @@ export default class UserCard extends Component {
       this.props.showNotification(
         'error',
         'Error',
-        'Algo salió mal al actualizar el usuario'
+        'Algo salió mal al actualizar el usuario',
       );
       this.props.setLoading(false);
     }
@@ -52,7 +52,7 @@ export default class UserCard extends Component {
       this.props.showNotification(
         'error',
         'Error',
-        'Algo salió mal al eliminar el usuario'
+        'Algo salió mal al eliminar el usuario',
       );
       this.props.setLoading(false);
     }
@@ -77,8 +77,7 @@ export default class UserCard extends Component {
             align="center"
             variant="h4"
             style={{ color: 'black' }}
-            gutterBottom
-          >
+            gutterBottom>
             Users:
           </Typography>
         </div>
@@ -162,8 +161,7 @@ export default class UserCard extends Component {
                   }
                   as="select"
                   required={true}
-                  value={this.state.user.role}
-                >
+                  value={this.state.user.role}>
                   <option value="admin">Admin</option>
                   <option value="viewer">Viewer</option>
                 </Form.Control>
@@ -177,16 +175,14 @@ export default class UserCard extends Component {
                 <Button
                   variant="btn btn-outline-primary"
                   onClick={() => this.setState({ editing: true })}
-                  className="btn-block"
-                >
+                  className="btn-block">
                   Edit
                 </Button>
               ) : (
                 <Button
                   variant="btn btn-outline-primary"
                   onClick={this.updateUser}
-                  className=" btn-block"
-                >
+                  className=" btn-block">
                   Update
                 </Button>
               )}
@@ -196,8 +192,7 @@ export default class UserCard extends Component {
               <Button
                 onClick={this.deleteUser}
                 variant="btn btn-outline-danger"
-                className="btn-block"
-              >
+                className="btn-block">
                 Delete
               </Button>
             </Col>

@@ -3,6 +3,7 @@
  */
 
 const SERVER_URL = 'http://3.22.57.173:3000';
+//const SERVER_URL = 'http://127.0.0.1:3001';
 
 /*
  * SERVER PATHS
@@ -12,6 +13,9 @@ const USERS_URL = '/api/users';
 const GROWBEDS_URL = '/api/grow_beds';
 const GREEN_HOUSES_URL = '/api/grow_houses';
 const PEST_URL = '/api/pests';
+const INSPECTIONS_URL = '/api/inspection';
+const LIGHTS_URL = '/api/control/lights';
+const BLINDS_CONTROL_URL = '/api/control/blinds';
 
 /*----------------------------------------------------------
 * 
@@ -205,6 +209,10 @@ export const getGrowBeds = async () => {
   return json.grow_beds;
 };
 
+/**
+ *                 Diseases
+ */
+
 export const getDiseases = async () => {
   var myHeaders = new Headers();
   myHeaders.append('token', localStorage.getItem('token'));
@@ -216,6 +224,83 @@ export const getDiseases = async () => {
   };
 
   let response = await fetch(SERVER_URL + PEST_URL, requestOptions);
+
+  if (!response.ok) {
+    throw new Error();
+  }
+
   let json = await response.json();
   return json.pests;
+};
+
+export const saveInspection = async (inspection) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('Content-Type', 'application/json');
+
+  var raw = JSON.stringify(inspection);
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(SERVER_URL + INSPECTIONS_URL, requestOptions);
+
+  if (!response.ok) {
+    throw new Error();
+  }
+
+  return response;
+};
+
+/**
+ *                    Actions
+ */
+
+export const configLights = async (config) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var urlencoded = new URLSearchParams(config);
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(SERVER_URL + LIGHTS_URL, requestOptions);
+  if (!response.ok) {
+    throw new Error();
+  }
+
+  return response;
+};
+
+export const configBlinds = async (config) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var urlencoded = new URLSearchParams(config);
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(SERVER_URL + BLINDS_CONTROL_URL, requestOptions);
+
+  if (!response.ok) {
+    throw new Error();
+  }
+
+  return response.json();
 };

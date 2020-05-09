@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { createUser } from '../Utils/Api';
-import Typography from "@material-ui/core/Typography";
-import QRgen from "../components/QRgenerator";
+import Typography from '@material-ui/core/Typography';
+import QRgen from '../components/QRgenerator';
 
 export default class CreateUserForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: { role: "admin" },
-      IDcode: "123456",
+      user: { role: 'admin' },
+      IDcode: '123456',
       show: false,
     };
   }
@@ -28,9 +28,9 @@ export default class CreateUserForm extends Component {
 
     if (this.state.user.password !== this.state.user.password_v) {
       this.props.showNotification(
-        "error",
-        "Error",
-        "Las contraseñas no coinciden"
+        'error',
+        'Error',
+        'Las contraseñas no coinciden',
       );
       return;
     }
@@ -44,15 +44,15 @@ export default class CreateUserForm extends Component {
       this.props.refreshUsers();
       this.handleShow();
       this.props.showNotification(
-        "success",
-        "Ok",
-        "El usuario se ha creado satisfactoriamente"
+        'success',
+        'Ok',
+        'El usuario se ha creado satisfactoriamente',
       );
     } catch (error) {
       this.props.showNotification(
-        "error",
-        "Error",
-        "¡Ups!, algo salió mal al crear el usuario"
+        'error',
+        'Error',
+        '¡Ups!, algo salió mal al crear el usuario',
       );
     }
 
@@ -63,13 +63,12 @@ export default class CreateUserForm extends Component {
     return (
       <React.Fragment>
         <div className="pt-4 text-center">
-        <Typography
-              align="center"
-              variant="h3"
-              style={{ color: "gray" }}
-              gutterBottom
-              >
-              Create User:
+          <Typography
+            align="center"
+            variant="h3"
+            style={{ color: 'gray' }}
+            gutterBottom>
+            Create User:
           </Typography>
         </div>
         <div className="pt-5 text-center">
@@ -174,8 +173,7 @@ export default class CreateUserForm extends Component {
                       })
                     }
                     as="select"
-                    required={true}
-                  >
+                    required={true}>
                     <option value="admin">Admin</option>
                     <option value="viewer">Viewer</option>
                   </Form.Control>
@@ -185,13 +183,12 @@ export default class CreateUserForm extends Component {
 
             <Row>
               <Col className="col-sm-15">
-                <div className="d-flex justify-content-center pt-5" >
+                <div className="d-flex justify-content-center pt-5">
                   <Button
                     type="submit"
                     value="Submit"
                     variant="btn btn-outline-primary"
-                    className="btn-block w-50 "
-                  >
+                    className="btn-block w-50 ">
                     Create
                   </Button>
                 </div>

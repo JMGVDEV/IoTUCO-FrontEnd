@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { getDiseases } from '../Utils/Api';
+import { getDiseases, saveInspection } from '../Utils/Api';
 
-export default class DisComp extends Component {
+export default class DiseaseForm extends Component {
   constructor(props) {
     super(props);
     this.checkedDiseases = [];
@@ -34,12 +34,17 @@ export default class DisComp extends Component {
     this.Observations = e.target.value;
   };
 
-  // Submit
-  onSubmit = (e) => {
+  onSubmit = async (e) => {
     e.preventDefault();
-    console.log(this.checkedDiseases, this.Observations);
     try {
       this.props.setLoading(true);
+      await saveInspection({
+        zone: 1,
+        greenhouse: this.props.greenHouseId,
+        growbed: this.props.growBedId,
+        pests: this.checkedDiseases,
+        observation: this.Observations,
+      });
       this.props.showNotification('success', 'Ok', 'Estado de la cama enviado');
       this.props.setLoading(false);
     } catch (error) {
@@ -64,8 +69,8 @@ export default class DisComp extends Component {
                 <Form.Group controlId="formBasicCheckbox">
                   <Form.Check
                     type="checkbox"
-                    value={disease}
-                    label={disease}
+                    value={disease.name}
+                    label={disease.name}
                     onChange={this.onChangeDisease}
                   />
                 </Form.Group>
