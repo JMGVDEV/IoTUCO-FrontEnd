@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { createUser } from '../Utils/Api';
+import Typography from "@material-ui/core/Typography";
 
 export default class CreateUserForm extends Component {
   constructor(props) {
@@ -51,14 +52,21 @@ export default class CreateUserForm extends Component {
     return (
       <React.Fragment>
         <div className="pt-4 text-center">
-          <h3>Agregar Usuario:</h3>
+        <Typography
+              align="center"
+              variant="h3"
+              style={{ color: "gray" }}
+              gutterBottom
+              >
+              Create User:
+          </Typography>
         </div>
-        <div className="pt-4 text-center">
+        <div className="pt-5 text-center">
           <Form onSubmit={this.createUser}>
             <Row>
               <Col className="col-sm-4">
                 <Form.Group>
-                  <Form.Label>Nombre:</Form.Label>
+                  <Form.Label>Name:</Form.Label>
                   <Form.Control
                     onChange={(e) =>
                       this.setState({
@@ -67,7 +75,7 @@ export default class CreateUserForm extends Component {
                     }
                     value={this.state.user.name}
                     type="text"
-                    placeholder="Ingrese aquí nombre"
+                    placeholder="Enter Name"
                     required={true}
                   />
                 </Form.Group>
@@ -75,7 +83,7 @@ export default class CreateUserForm extends Component {
 
               <Col className="col-sm-4">
                 <Form.Group>
-                  <Form.Label>Apellido:</Form.Label>
+                  <Form.Label>Last Name:</Form.Label>
                   <Form.Control
                     onChange={(e) =>
                       this.setState({
@@ -84,14 +92,14 @@ export default class CreateUserForm extends Component {
                     }
                     value={this.state.user.last_name}
                     type="text"
-                    placeholder="Ingrese aquí apellido"
+                    placeholder="Enter Last Name"
                   />
                 </Form.Group>
               </Col>
 
               <Col className="col-sm-4">
                 <Form.Group>
-                  <Form.Label>Correo Electrónico:</Form.Label>
+                  <Form.Label>Email:</Form.Label>
                   <Form.Control
                     onChange={(e) =>
                       this.setState({
@@ -100,7 +108,7 @@ export default class CreateUserForm extends Component {
                     }
                     value={this.state.user.email}
                     type="email"
-                    placeholder="Ingrese aquí el e-mail"
+                    placeholder="Enter e-mail"
                     required={true}
                   />
                 </Form.Group>
@@ -108,9 +116,9 @@ export default class CreateUserForm extends Component {
             </Row>
 
             <Row>
-              <Col className="col-sm-4">
+              <Col className="col-sm-4 pt-3">
                 <Form.Group>
-                  <Form.Label>Contraseña:</Form.Label>
+                  <Form.Label>Password:</Form.Label>
                   <Form.Control
                     onChange={(e) =>
                       this.setState({
@@ -119,15 +127,15 @@ export default class CreateUserForm extends Component {
                     }
                     value={this.state.user.password}
                     type="password"
-                    placeholder="Ingrese aquí la contraseña"
+                    placeholder="Enter Password"
                     required={true}
                   />
                 </Form.Group>
               </Col>
 
-              <Col className="col-sm-4">
+              <Col className="col-sm-4 pt-3">
                 <Form.Group>
-                  <Form.Label>Confirme La Contraseña:</Form.Label>
+                  <Form.Label>Confirm Password:</Form.Label>
                   <Form.Control
                     onChange={(e) =>
                       this.setState({
@@ -139,15 +147,15 @@ export default class CreateUserForm extends Component {
                     }
                     value={this.state.user.password_v}
                     type="password"
-                    placeholder="Contraseña"
+                    placeholder="Password"
                     required={true}
                   />
                 </Form.Group>
               </Col>
 
-              <Col className="col-sm-4">
+              <Col className="col-sm-4 pt-3">
                 <Form.Group>
-                  <Form.Label>Seleccione Rol:</Form.Label>
+                  <Form.Label>Select Role:</Form.Label>
                   <Form.Control
                     onChange={(e) =>
                       this.setState({
@@ -157,8 +165,8 @@ export default class CreateUserForm extends Component {
                     as="select"
                     required={true}
                   >
-                    <option value="admin">Administrador</option>
-                    <option value="viewer">Visor</option>
+                    <option value="admin">Admin</option>
+                    <option value="viewer">Viewer</option>
                   </Form.Control>
                 </Form.Group>
               </Col>
@@ -166,14 +174,14 @@ export default class CreateUserForm extends Component {
 
             <Row>
               <Col className="col-sm-15">
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center pt-5" >
                   <Button
                     type="submit"
                     value="Submit"
-                    variant="primary"
+                    variant="btn btn-outline-primary"
                     className="btn-block w-50 "
                   >
-                    Agregar
+                    Create
                   </Button>
                 </div>
               </Col>

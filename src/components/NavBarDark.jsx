@@ -19,33 +19,33 @@ export default class NavBarDark extends Component {
     return (
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand>
-          <FontAwesomeIcon className="seedling" icon={faSeedling} />
-          SIMIN
+          <FontAwesomeIcon className="seedling" icon={faSeedling}/>
+          MSG
         </Navbar.Brand>
 
         <Nav className="mr-auto">
 
           <Nav.Link as={Link} to="/home">
-            Inicio
+            Home
           </Nav.Link>
           {this.isAdmin() && (
             <Nav.Link as={Link} to="/users">
-              Usuarios
+              Admin Users
             </Nav.Link>
           )}
           {this.isAdmin() && (
             <Nav.Link as={Link} to="/diseases">
-              Plagas
+              Bed State
             </Nav.Link>
           )}
           {this.isAdmin() && (
             <Nav.Link as={Link} to="/configactions">
-              Acciones
+              Config Actions
             </Nav.Link>
           )}
 
           <Nav.Link as={Link} to="/">
-            <span onClick={this.logout}> Salir </span>
+            <span onClick={this.logout}> LogOut </span>
           </Nav.Link>
         </Nav>
       </Navbar>

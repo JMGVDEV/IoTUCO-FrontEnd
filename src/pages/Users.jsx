@@ -63,7 +63,7 @@ export default class Users extends React.Component {
         <NotificationContainer />
 
         <Row className="mt-3 mx-2">
-          <Col className="col-sm-4">
+          <Col className="col-sm-3">
             <UserCard
               users={this.state.users}
               refreshUsers={this.refreshUsers}
@@ -72,7 +72,7 @@ export default class Users extends React.Component {
             />
           </Col>
 
-          <Col className="col-md-8 d-flex flex-column justify-content-stretch align-items-stretch">
+          <Col className="col-md-9 d-flex flex-column justify-content-stretch align-items-stretch">
             <CreateUserForm
               refreshUsers={this.refreshUsers}
               showNotification={this.showNotification}

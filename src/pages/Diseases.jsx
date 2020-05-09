@@ -3,6 +3,12 @@ import NavBarDark from '../components/NavBarDark';
 import { Row, Col } from 'react-bootstrap';
 import Filters from '../components/Filters';
 import DisComp from '../components/DiseaseForm';
+import Typography from "@material-ui/core/Typography";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 export default class Diseases extends React.Component {
   constructor(props) {
@@ -22,22 +28,52 @@ export default class Diseases extends React.Component {
     });
   };
 
+  setLoading = (loading) => {
+    this.setState({ loading: loading });
+  };
+
+  showNotification = (type, title, message) => {
+    switch (type) {
+      case 'success':
+        NotificationManager.success(message, title, 5000);
+        break;
+      case 'error':
+        NotificationManager.error(message, title, 5000);
+        break;
+
+      default:
+        break;
+    }
+  };
+
+
   render() {
     return (
       <div className="body">
         <NavBarDark />
-
+        <NotificationContainer />
         <Row className="content">
-          <Col className="col-md-4 w-100 shadow-lg pt-3 mt-4 text-center justify-content-center">
+          <Col className="col-md-3 w-100 shadow-lg pt-1 mt-4 text-center justify-content-center">
             <Filters handleFiltersChange={this.handleFiltersChange} />
           </Col>
           <Col className="col-md-8 px-5">
             <div>
               <div className="pt-3 text-center">
-                <h2> BED {this.state.growBedId}</h2>
+                <Typography
+                                align="center"
+                                variant="h3"
+                                style={{ color: "gray" }}
+                                gutterBottom
+                            >
+                                 Bed {this.state.growBedId}
+                </Typography>
+                
               </div>
             </div>
-            <DisComp />
+            <DisComp              
+             showNotification={this.showNotification}
+             setLoading={this.setLoading}
+             />
           </Col>
         </Row>
       </div>

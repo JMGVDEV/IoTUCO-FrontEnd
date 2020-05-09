@@ -1,10 +1,11 @@
 import React from "react";
 import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router-dom";
 import { loginUser as login } from "../Utils/Api";
 import "../styles/login.css";
+import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -59,29 +60,30 @@ class LoginPage extends React.Component {
     return (
       <div className="layout">
         <div className="navBar">
-          <h3>Sistema De Monitoreo Para Invernaderos - SIMIN</h3>
+        <FontAwesomeIcon className="seedling" icon={faLeaf} />
+          <h3> Monitoring System for Greenhouses - MSG</h3>
         </div>
 
         <Container className="layout">
           <Row className="d-flex justify-content-center">
             <Col className="col-sm-4">
               <div className="d-flex justify-content-center icon">
-                <FontAwesomeIcon icon={faUser} classame="usr" color="#4D4D4D" />
+                <FontAwesomeIcon icon={faUserTie} classame="usr" color="darkblue" />
               </div>
 
               <Form onSubmit={this.loginUser}>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Correo Electrónico:</Form.Label>
+                  <Form.Label>Email:</Form.Label>
                   <Form.Control
                     onChange={this.onChangeEmail}
                     value={this.state.email}
                     type="email"
-                    placeholder="Ingrese su e-mail aquí"
+                    placeholder="Enter Email"
                   />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Contraseña:</Form.Label>
+                  <Form.Label>Password:</Form.Label>
                   <Form.Control
                     onChange={this.onChangePassword}
                     value={this.state.password}
@@ -90,8 +92,8 @@ class LoginPage extends React.Component {
                   />
                 </Form.Group>
 
-                <Button type="submit" variant="primary" className="btn-block">
-                  Entrar
+                <Button type="submit" variant="btn btn-outline-primary"  className="btn-block">
+                  Login
                 </Button>
               </Form>
               {this.state.error ? errorMessage : null}

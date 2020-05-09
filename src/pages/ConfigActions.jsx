@@ -2,20 +2,17 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import NavBarDark from '../components/NavBarDark';
 import Filters from '../components/Filters'
-import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
+import ActionsComp from '../components/FunctionActions';
 import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  } from '@material-ui/pickers';
+  NotificationContainer,
+  NotificationManager,
+} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 class ConfigActions extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {growBedId: '',greenHouseId: '',config: null, open: null}
+    this.state = { growBedId: '', greenHouseId: '', config: null, open: null }
     this.open = 'open_blinds'
     this.config = 'config_actions'
   }
@@ -28,117 +25,42 @@ class ConfigActions extends React.Component {
     });
   };
 
-
-  finalTime = (e) => {
-    console.log(e);
-    this.setState({ selectedDate2: e });
-    let date = new Date(e);
-    let str = date.toString("HH:mm:ss");
-    let time = str.split(" ")[4];
-    this.setState({ finalHour: time });
+  setLoading = (loading) => {
+    this.setState({ loading: loading });
   };
 
-  startTime = (event) => {
-    console.log(event);
-    this.setState({ selectedDate1: event });
-    let date = new Date(event);
-    let str = date.toString("HH:mm:ss");
-    let time = str.split(" ")[4];
-    this.setState({ startHour: time });
-  };
+  showNotification = (type, title, message) => {
+    switch (type) {
+      case 'success':
+        NotificationManager.success(message, title, 5000);
+        break;
+      case 'error':
+        NotificationManager.error(message, title, 5000);
+        break;
 
-  OpenBlinds = (e) => {
-    console.log(this.open);
-    
-  };
-
-  Configure = (e) => {
-    console.log(this.config);
-    
-    
+      default:
+        break;
+    }
   };
 
   render() {
     return (
       <div className="body">
         <NavBarDark />
-
+        <NotificationContainer />
         <Row className="content">
-          <Col className="col-md-4 w-100 shadow-lg pt-3 mt-4 text-center justify-content-center">
+          <Col className="col-md-3 w-100 shadow-lg pt-3 mt-3 text-center justify-content-center">
             <Filters handleFiltersChange={this.handleFiltersChange} ></Filters>
           </Col>
-
-          <Col className="col-md-8">
-          <Box my={1} alignItems="center" justifyContent="center">
-          <Typography
-            align="center"
-            variant="h3"
-            style={{ color: "gray" }}
-            gutterBottom
-          >
-            SELECT HOUR
-          </Typography>
-        </Box>
-        <div style={{ padding: 90 }}>
-          <Grid container justify="space-around">
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardTimePicker
-                margin="normal"
-                id="start-time-picker"
-                label="Start Time"
-                value={this.state.selectedDate1}
-                onChange={this.startTime}
-                KeyboardButtonProps={{
-                  "aria-label": "change time",
-                }}
-              />
-
-              <KeyboardTimePicker
-                margin="normal"
-                id="final-time-picker"
-                label="Final Time"
-                value={this.state.selectedDate2}
-                onChange={this.finalTime}
-                KeyboardButtonProps={{
-                  "aria-label": "change time",
-                }}
-              />
-            </MuiPickersUtilsProvider>
-          </Grid >
-          </div>
-          <div style={{ padding: 50 }}>
-         
-          <Row className="justify-content-around w-100 m-0 px-8">
-          <Col className="col-md-5">
-            <Button
-              onClick={this.Configure}
-              variant="outlined"
-              value="Submit"
-              color="primary"
-              className=" btn-block"
-            >
-              CONFIGURE
-            </Button>
-            <Button
-              onClick={this.OpenBlinds}
-              variant="outlined"
-              value="Submit"
-              color="primary"
-              className=" btn-block"
-            >
-              OPEN BLINDS
-            </Button>
-            </Col>
-            </Row>
-          
-          
-        </div>
-
-
+          <Col className="col-md-9 px-10 text-center justify-content-center">
+          <ActionsComp                
+              showNotification={this.showNotification}
+              setLoading={this.setLoading}
+            />
           </Col>
         </Row>
       </div>
-    );
+    )
   }
 }
 export default ConfigActions;

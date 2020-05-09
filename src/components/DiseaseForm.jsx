@@ -41,6 +41,19 @@ export default class DisComp extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     console.log(this.checkedDiseases, this.Observations);
+    try {
+      this.props.setLoading(true);   
+      this.props.showNotification("success", "Ok", "Estado de la cama enviado");
+      this.props.setLoading(false);
+    } catch (error) {
+      this.props.showNotification(
+        "error",
+        "Error",
+        "Algo salió mal al enviar el estado de la cama"
+      );
+      this.props.setLoading(false);
+    }
+    this.setState({ editing: false });
   };
 
   render() {
@@ -65,7 +78,7 @@ export default class DisComp extends Component {
 
           <Form.Group controlId="Observaciones">
             <Form.Label>
-              <h5>OBSERVATIONS:</h5>
+              <h5>OBSERVATIONS</h5>
             </Form.Label>
             <Form.Control
               as="textarea"
@@ -78,7 +91,7 @@ export default class DisComp extends Component {
             <Button
               type="submit"
               value="Submit"
-              variant="primary"
+              variant="btn btn-outline-primary"
               className="btn-block w-50 "
             >
               SAVE

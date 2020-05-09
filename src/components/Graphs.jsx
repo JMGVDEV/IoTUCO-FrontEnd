@@ -3,6 +3,7 @@ import GaugeChart from "react-gauge-chart";
 import { Row, Col } from "react-bootstrap";
 import { getGrowBedEnvironment } from "../Utils/Api";
 import "../styles/graphs.css";
+import Typography from "@material-ui/core/Typography";
 
 export default class Graphs extends Component {
   constructor(props) {
@@ -55,8 +56,14 @@ export default class Graphs extends Component {
   render() {
     return (
       <div className="mt-4 text-center">
-        <h3>Variables Ambientales:</h3>
-
+            <Typography
+                  align="center"
+                  variant="h3"
+                  style={{ color: "gray" }}
+                  gutterBottom
+              >
+                Environmental variables
+            </Typography>
         <Row className=" pt-5 justify-content-center">
           <Col>
             <GaugeChart
@@ -68,7 +75,7 @@ export default class Graphs extends Component {
               percent={this.state.temperature}
               formatTextValue={(value) => value + "°"}
             />
-            <h3>Temperatura (°C)</h3>
+            <h3>Temperature (°C)</h3>
           </Col>
 
           <Col>
@@ -80,7 +87,7 @@ export default class Graphs extends Component {
               id="gauge-chart2"
               formatTextValue={(value) => value + "%"}
             />
-            <h3>Humedad (%)</h3>
+            <h3>Humidity (%)</h3>
           </Col>
         </Row>
       </div>

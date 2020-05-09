@@ -31,10 +31,10 @@ class HomePage extends React.Component {
       <div className="body">
         <NavBarDark />
         <Row className="content">
-          <Col className="col-md-4 w-100 shadow-lg filters">
+          <Col className="col-md-3 w-100 shadow-lg filters">
             <Filters handleFiltersChange={this.handleFiltersChange} />
             <Form.Group>
-              <Form.Label>Refrescar cada (segundos):</Form.Label>
+              <Form.Label>Update every (seconds):</Form.Label>
               <Form.Control
                 defaultValue="3"
                 type="number"

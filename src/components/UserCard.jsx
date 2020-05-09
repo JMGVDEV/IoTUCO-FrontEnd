@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUsersCog } from "@fortawesome/free-solid-svg-icons";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { updateUser, deleteUser } from "../Utils/Api";
+import Typography from "@material-ui/core/Typography";
 
 export default class UserCard extends Component {
   constructor(props) {
@@ -70,15 +71,22 @@ export default class UserCard extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="pt-4 text-center">
-          <h3>Usuario:</h3>
+        <div className="pt-1 text-center">
+          <Typography
+              align="center"
+              variant="h4"
+              style={{ color: "black" }}
+              gutterBottom
+              >
+              Users:
+          </Typography>
         </div>
 
         <Form>
           <Form.Group placeholder="Seleccione">
             <Form.Control onChange={this.setUser} as="select">
               <option value="" defaultValue selected disabled>
-                Seleccione
+                Select
               </option>
               {this.props.users.map((user) => {
                 return (
@@ -94,7 +102,7 @@ export default class UserCard extends Component {
         <div className="text-center pb-3 shadow-lg">
           <Row className="d-flex flex-column align-items-center">
             <div className="icon p-0 m-0">
-              <FontAwesomeIcon icon={faUser} color="#4D4D4D" />
+              <FontAwesomeIcon icon={faUsersCog} color="darkblue" />
             </div>
 
             <Form className="w-75">
@@ -108,7 +116,7 @@ export default class UserCard extends Component {
                   }
                   value={this.state.user.name}
                   type="text"
-                  placeholder="Nombre"
+                  placeholder="Name"
                   required={true}
                 />
               </Form.Group>
@@ -123,7 +131,7 @@ export default class UserCard extends Component {
                   }
                   value={this.state.user.last_name}
                   type="text"
-                  placeholder="Apellido"
+                  placeholder="Last Name"
                   required={true}
                 />
               </Form.Group>
@@ -138,7 +146,7 @@ export default class UserCard extends Component {
                   }
                   value={this.state.user.email}
                   type="text"
-                  placeholder="Correo Electrónico"
+                  placeholder="Email"
                   required={true}
                 />
               </Form.Group>
@@ -155,8 +163,8 @@ export default class UserCard extends Component {
                   required={true}
                   value={this.state.user.role}
                 >
-                  <option value="admin">Administrador</option>
-                  <option value="viewer">Visor</option>
+                  <option value="admin">Admin</option>
+                  <option value="viewer">Viewer</option>
                 </Form.Control>
               </Form.Group>
             </Form>
@@ -166,19 +174,19 @@ export default class UserCard extends Component {
             <Col className="col-md-5">
               {!this.state.editing ? (
                 <Button
-                  variant="primary"
+                  variant="btn btn-outline-primary"
                   onClick={() => this.setState({ editing: true })}
                   className="btn-block"
                 >
-                  Editar
+                  Edit
                 </Button>
               ) : (
                 <Button
-                  variant="primary"
+                  variant="btn btn-outline-primary"
                   onClick={this.updateUser}
                   className=" btn-block"
                 >
-                  Actualizar
+                  Update
                 </Button>
               )}
             </Col>
@@ -186,10 +194,10 @@ export default class UserCard extends Component {
             <Col className="col-md-5">
               <Button
                 onClick={this.deleteUser}
-                variant="danger"
+                variant="btn btn-outline-danger"
                 className="btn-block"
               >
-                Borrar
+                Delete
               </Button>
             </Col>
           </Row>

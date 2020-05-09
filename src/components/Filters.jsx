@@ -75,7 +75,7 @@ export default class Filters extends Component {
         </div>
 
         <div className="icon text-center p-0 m-0">
-          <FontAwesomeIcon icon={faThermometerQuarter} color="#4D4D4D" />
+          <FontAwesomeIcon icon={faThermometerQuarter} color="green" />
         </div>
 
         <Form onSubmit={this.createUser}>
