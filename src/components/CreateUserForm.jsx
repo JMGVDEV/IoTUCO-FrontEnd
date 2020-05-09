@@ -2,14 +2,25 @@ import React, { Component } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { createUser } from '../Utils/Api';
 import Typography from "@material-ui/core/Typography";
+import QRgen from "../components/QRgenerator";
 
 export default class CreateUserForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: { role: 'admin' },
+      user: { role: "admin" },
+      IDcode: "123456",
+      show: false,
     };
+  }
+
+  handleClose = () => {
+    this.setState({ show: false });
+  };
+
+  handleShow() {
+    this.setState({ show: true });
   }
 
   createUser = async (event) => {
@@ -17,9 +28,9 @@ export default class CreateUserForm extends Component {
 
     if (this.state.user.password !== this.state.user.password_v) {
       this.props.showNotification(
-        'error',
-        'Error',
-        'Las contraseñas no coinciden'
+        "error",
+        "Error",
+        "Las contraseñas no coinciden"
       );
       return;
     }
@@ -31,17 +42,17 @@ export default class CreateUserForm extends Component {
     try {
       await createUser(user);
       this.props.refreshUsers();
-
+      this.handleShow();
       this.props.showNotification(
-        'success',
-        'Ok',
-        'El usuario se ha creado satisfactoriamente'
+        "success",
+        "Ok",
+        "El usuario se ha creado satisfactoriamente"
       );
     } catch (error) {
       this.props.showNotification(
-        'error',
-        'Error',
-        '¡Ups!, algo salió mal al crear el usuario'
+        "error",
+        "Error",
+        "¡Ups!, algo salió mal al crear el usuario"
       );
     }
 
@@ -187,6 +198,11 @@ export default class CreateUserForm extends Component {
               </Col>
             </Row>
           </Form>
+          <QRgen
+            IDcode={this.state.IDcode}
+            handleClose={this.handleClose}
+            show={this.state.show}
+          />
         </div>
       </React.Fragment>
     );
