@@ -63,7 +63,7 @@ export default class Diseases extends React.Component {
                   variant="h3"
                   style={{ color: 'gray' }}
                   gutterBottom>
-                  Bed {this.state.growBedId}
+                  Cama {this.state.growBedId}
                 </Typography>
               </div>
             </div>

@@ -71,17 +71,17 @@ export default class Filters extends Component {
       <div>
 
         <div className="pt-3 text-center">
-          <h3>SELECT GROW BED</h3>
+          <h3>Selecionar Cama</h3>
         </div>
 
         <div className="icon text-center p-0 m-0">
-          <FontAwesomeIcon icon={faThermometerQuarter} color="green" />
+          <FontAwesomeIcon icon={faThermometerQuarter} color="#2AC218" />
         </div>
 
         <Form onSubmit={this.createUser}>
           <Form.Group>
 
-            <Form.Label>GREEN HOUSES</Form.Label>
+            <Form.Label>Invernaderos</Form.Label>
 
             <Form.Control
               onChange={this.filterGrowBeds}
@@ -91,14 +91,14 @@ export default class Filters extends Component {
               {this.state.greenHouses &&
                 this.state.greenHouses.map((green_house, idx) => (
                   <option key={idx} value={green_house.greenhouse}>
-                    green house {green_house.greenhouse}
+                    Invernadero {green_house.greenhouse}
                   </option>
                 ))}
             </Form.Control>
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>GROW BEDS</Form.Label>
+            <Form.Label>Camas</Form.Label>
             <Form.Control
               onChange={this.handleGrowBedChange}
               as="select"
@@ -107,7 +107,7 @@ export default class Filters extends Component {
               {this.state.growBeds &&
                 this.state.growBeds.map((grow_bed, idx) => (
                   <option key={idx} value={grow_bed.growbed}>
-                    grow bed {grow_bed.growbed}
+                    Cama {grow_bed.growbed}
                   </option>
                 ))}
             </Form.Control>

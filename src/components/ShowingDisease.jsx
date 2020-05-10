@@ -28,7 +28,7 @@ export default class ShowD extends Component {
         <Col className="col-md-8">
           <div className="text-center">
             <ListGroup>
-              <ListGroup.Item variant="warning">Observaciones:</ListGroup.Item>
+              <ListGroup.Item variant="info">Observaciones:</ListGroup.Item>
               <ListGroup.Item>{this.state.Observation}</ListGroup.Item>
             </ListGroup>
           </div>

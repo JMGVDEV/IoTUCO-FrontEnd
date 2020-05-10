@@ -61,29 +61,29 @@ class LoginPage extends React.Component {
       <div className="layout">
         <div className="navBar">
         <FontAwesomeIcon className="seedling" icon={faLeaf} />
-          <h3> Monitoring System for Greenhouses - MSG</h3>
+          <h3> Sistema de Monitoreo para Invernaderos - MSG</h3>
         </div>
 
         <Container className="layout">
           <Row className="d-flex justify-content-center">
             <Col className="col-sm-4">
               <div className="d-flex justify-content-center icon">
-                <FontAwesomeIcon icon={faUserTie} classame="usr" color="darkblue" />
+                <FontAwesomeIcon icon={faUserTie} classame="usr" color="gray" />
               </div>
 
               <Form onSubmit={this.loginUser}>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Email:</Form.Label>
+                  <Form.Label>Correo Electrónico:</Form.Label>
                   <Form.Control
                     onChange={this.onChangeEmail}
                     value={this.state.email}
                     type="email"
-                    placeholder="Enter Email"
+                    placeholder="Ingrese su correo electrónico"
                   />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Password:</Form.Label>
+                  <Form.Label>Contraseña:</Form.Label>
                   <Form.Control
                     onChange={this.onChangePassword}
                     value={this.state.password}
@@ -93,7 +93,7 @@ class LoginPage extends React.Component {
                 </Form.Group>
 
                 <Button type="submit" variant="btn btn-outline-primary"  className="btn-block">
-                  Login
+                  Iniciar Sesión
                 </Button>
               </Form>
               {this.state.error ? errorMessage : null}

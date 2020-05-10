@@ -62,7 +62,7 @@ export default class Graphs extends Component {
                   style={{ color: "gray" }}
                   gutterBottom
               >
-                Environmental variables
+                Variables Ambientales
             </Typography>
         <Row className=" pt-5 justify-content-center">
           <Col>
@@ -75,7 +75,7 @@ export default class Graphs extends Component {
               percent={this.state.temperature}
               formatTextValue={(value) => value + "°"}
             />
-            <h3>Temperature (°C)</h3>
+            <h3>Temperatura (°C)</h3>
           </Col>
 
           <Col>
@@ -87,7 +87,7 @@ export default class Graphs extends Component {
               id="gauge-chart2"
               formatTextValue={(value) => value + "%"}
             />
-            <h3>Humidity (%)</h3>
+            <h3>Humedad (%)</h3>
           </Col>
         </Row>
       </div>

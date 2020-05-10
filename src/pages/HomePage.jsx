@@ -36,7 +36,7 @@ class HomePage extends React.Component {
           <Col className="col-md-3 w-100 shadow-lg filters">
             <Filters handleFiltersChange={this.handleFiltersChange} />
             <Form.Group>
-              <Form.Label>Update every (seconds):</Form.Label>
+              <Form.Label>Refrescar cada (Segundos):</Form.Label>
               <Form.Control
                 defaultValue="3"
                 type="number"

@@ -9,6 +9,7 @@ import {
   KeyboardTimePicker,
 } from '@material-ui/pickers';
 import { configLights, configBlinds } from '../Utils/Api';
+import { ButtonGroup } from '@material-ui/core';
 
 class ActionsComp extends React.Component {
   constructor(props) {
@@ -49,13 +50,13 @@ class ActionsComp extends React.Component {
       this.props.showNotification(
         'success',
         'Ok',
-        'Se Cambío el estado de las cortinas',
+        'Se cambío el estado de las cortinas',
       );
     } catch (error) {
       this.props.showNotification(
         'error',
         'Error',
-        'Algo salió mal al abrir las cortinas',
+        'Algo salió mal al abrir o cerrar las cortinas',
       );
     }
     this.props.setLoading(false);
@@ -93,10 +94,10 @@ class ActionsComp extends React.Component {
               variant="h3"
               style={{ color: 'gray' }}
               gutterBottom>
-              Select Hour
+              Seleccionar Horario
             </Typography>
           </Box>
-          <div style={{ padding: 90 }}>
+          <div style={{ padding: 100 }}>
             <Grid container justify="space-around">
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardTimePicker
@@ -113,6 +114,7 @@ class ActionsComp extends React.Component {
 
                 <KeyboardTimePicker
                   inputVariant="outlined"
+                  variant="primary"
                   margin="normal"
                   id="final-time-picker"
                   label="Final Time"
@@ -125,41 +127,41 @@ class ActionsComp extends React.Component {
               </MuiPickersUtilsProvider>
             </Grid>
           </div>
-          <div style={{ padding: 10 }}>
-            <Row className="justify-content-around w-100 m-0 px-8">
-              <Col className="col-md-3">
+          <div style={{ padding: 10}}>
+          <Grid container justify="space-around">
+            <Row className="justify-content-around w-120 m-4 px-10 ">
+              <Col className="col-sm-4">
                 <Button
                   onClick={this.Configure}
                   variant="btn btn-outline-primary"
                   value="Submit"
                   color="primary"
                   className=" btn-block">
-                  CONFIGURE
+                  Configurar
                 </Button>
               </Col>
-              <Col className="col-sm-3">
-                <Button
-                  onClick={() => this.configBlinds(100)}
-                  key={100}
-                  variant="btn btn-outline-success"
-                  value="Submit"
-                  color="primary"
-                  className=" btn-block">
-                  OPEN BLINDS
-                </Button>
-              </Col>
-              <Col className="col-sm-3">
-                <Button
-                  onClick={() => this.configBlinds(0)}
-                  key={0}
-                  variant="btn btn-outline-success"
-                  value="Submit"
-                  color="primary"
-                  className=" btn-block">
-                  Cerrar Cortinas
-                </Button>
+              <Col className="col-sm-8">
+                <ButtonGroup size="large" aria-label="large align center button group">
+                  <Button                 
+                    onClick={() => this.configBlinds(100)}
+                    key={100}
+                    variant="btn btn-outline-success"
+                    value="Submit"
+                    >
+                    Abrir Cortinas
+                  </Button>
+                  <Button             
+                    onClick={() => this.configBlinds(0)}
+                    key={0}
+                    variant="btn btn-outline-success"
+                    value="Submit"
+                    >
+                    Cerrar Cortinas
+                  </Button>
+                </ButtonGroup>  
               </Col>
             </Row>
+            </Grid>
           </div>
         </Col>
       </div>

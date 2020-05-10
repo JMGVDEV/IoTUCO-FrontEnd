@@ -78,7 +78,7 @@ export default class UserCard extends Component {
             variant="h4"
             style={{ color: 'black' }}
             gutterBottom>
-            Users:
+            Usuarios:
           </Typography>
         </div>
 
@@ -86,7 +86,7 @@ export default class UserCard extends Component {
           <Form.Group placeholder="Seleccione">
             <Form.Control onChange={this.setUser} as="select">
               <option value="" defaultValue selected disabled>
-                Select
+                Seleccione un usuario
               </option>
               {this.props.users.map((user) => {
                 return (
@@ -102,7 +102,7 @@ export default class UserCard extends Component {
         <div className="text-center pb-3 shadow-lg">
           <Row className="d-flex flex-column align-items-center">
             <div className="icon p-0 m-0">
-              <FontAwesomeIcon icon={faUsersCog} color="darkblue" />
+              <FontAwesomeIcon icon={faUsersCog} color="gray" />
             </div>
 
             <Form className="w-75">
@@ -116,7 +116,7 @@ export default class UserCard extends Component {
                   }
                   value={this.state.user.name}
                   type="text"
-                  placeholder="Name"
+                  placeholder="Nombre"
                   required={true}
                 />
               </Form.Group>
@@ -131,7 +131,7 @@ export default class UserCard extends Component {
                   }
                   value={this.state.user.last_name}
                   type="text"
-                  placeholder="Last Name"
+                  placeholder="Apellidos"
                   required={true}
                 />
               </Form.Group>
@@ -146,7 +146,7 @@ export default class UserCard extends Component {
                   }
                   value={this.state.user.email}
                   type="text"
-                  placeholder="Email"
+                  placeholder="Correo Electrónico"
                   required={true}
                 />
               </Form.Group>
@@ -162,8 +162,8 @@ export default class UserCard extends Component {
                   as="select"
                   required={true}
                   value={this.state.user.role}>
-                  <option value="admin">Admin</option>
-                  <option value="viewer">Viewer</option>
+                  <option value="admin">Administrador</option>
+                  <option value="viewer">Observador</option>
                 </Form.Control>
               </Form.Group>
             </Form>
@@ -176,14 +176,14 @@ export default class UserCard extends Component {
                   variant="btn btn-outline-primary"
                   onClick={() => this.setState({ editing: true })}
                   className="btn-block">
-                  Edit
+                  Editar
                 </Button>
               ) : (
                 <Button
                   variant="btn btn-outline-primary"
                   onClick={this.updateUser}
                   className=" btn-block">
-                  Update
+                  Actualizar
                 </Button>
               )}
             </Col>
@@ -193,7 +193,7 @@ export default class UserCard extends Component {
                 onClick={this.deleteUser}
                 variant="btn btn-outline-danger"
                 className="btn-block">
-                Delete
+                Borrar
               </Button>
             </Col>
           </Row>

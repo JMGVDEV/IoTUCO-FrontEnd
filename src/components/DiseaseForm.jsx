@@ -61,7 +61,7 @@ export default class DiseaseForm extends Component {
   render() {
     return (
       <React.Fragment>
-        <h5>SELECT DESEASES</h5>
+        <h5>Seleccione Enfermedades:</h5>
         <Form onSubmit={this.onSubmit}>
           <Row className="mb-4">
             {this.state.diseases.map((disease, idx) => (
@@ -80,7 +80,7 @@ export default class DiseaseForm extends Component {
 
           <Form.Group controlId="Observaciones">
             <Form.Label>
-              <h5>OBSERVATIONS</h5>
+              <h5>Observaciones:</h5>
             </Form.Label>
             <Form.Control
               as="textarea"
@@ -95,7 +95,7 @@ export default class DiseaseForm extends Component {
               value="Submit"
               variant="btn btn-outline-primary"
               className="btn-block w-50 ">
-              SAVE
+              Enviar
             </Button>
           </div>
         </Form>

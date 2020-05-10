@@ -26,26 +26,26 @@ export default class NavBarDark extends Component {
         <Nav className="mr-auto">
 
           <Nav.Link as={Link} to="/home">
-            Home
+            Inicio
           </Nav.Link>
           {this.isAdmin() && (
             <Nav.Link as={Link} to="/users">
-              Admin Users
+              Admon Usuarios
             </Nav.Link>
           )}
           {this.isAdmin() && (
             <Nav.Link as={Link} to="/diseases">
-              Bed State
+              Estado Cama
             </Nav.Link>
           )}
           {this.isAdmin() && (
             <Nav.Link as={Link} to="/configactions">
-              Config Actions
+              Acciones
             </Nav.Link>
           )}
 
           <Nav.Link as={Link} to="/">
-            <span onClick={this.logout}> LogOut </span>
+            <span onClick={this.logout}> Cerrar Sesión </span>
           </Nav.Link>
         </Nav>
       </Navbar>
