@@ -12,12 +12,14 @@ export default class QRgen extends Component {
       <>
         <Modal show={this.props.show} onHide={this.props.handleClose} size="lg">
           <Modal.Header closeButton>
-            <Modal.Title centered="true">Your QR code is:</Modal.Title>
+            <Modal.Title centered="true">
+              Escaneé su Código con su aplicacion de autenticación preferida
+            </Modal.Title>
           </Modal.Header>
           <div className="text-center">
             <Modal.Body>
               <QRCode
-                value={this.props.IDcode}
+                value={this.props.TwoFactorUrl}
                 size="400"
                 includeMargin="true"
               />

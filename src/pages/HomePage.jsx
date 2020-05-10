@@ -3,7 +3,7 @@ import NavBarDark from '../components/NavBarDark';
 import { Row, Col, Form } from 'react-bootstrap';
 import Filters from '../components/Filters';
 import Graphs from '../components/Graphs';
-import ShowD from '../components/ShowingDisease';
+import ShowDiseases from '../components/ShowDiseases';
 
 import '../styles/home.css';
 
@@ -53,7 +53,10 @@ class HomePage extends React.Component {
             />
             <Col>
               <Row className=" pt-5 justify-content-center">
-                <ShowD />
+                <ShowDiseases
+                  growBedId={this.state.growBedId}
+                  // greenHouseId={this.state.greenHouseId}
+                />
               </Row>
             </Col>
           </Col>

@@ -11,26 +11,25 @@ export default class NavBarDark extends Component {
   };
 
   isAdmin = () => {
-    let role = localStorage.getItem("role");
-    return role == "admin" ? true : false;
+    let role = localStorage.getItem('role');
+    return role == 'admin' ? true : false;
   };
 
   render() {
     return (
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand>
-          <FontAwesomeIcon className="seedling" icon={faSeedling}/>
+          <FontAwesomeIcon className="seedling" icon={faSeedling} />
           MSG
         </Navbar.Brand>
 
         <Nav className="mr-auto">
-
           <Nav.Link as={Link} to="/home">
             Inicio
           </Nav.Link>
           {this.isAdmin() && (
             <Nav.Link as={Link} to="/users">
-              Admon Usuarios
+              Admin Usuarios
             </Nav.Link>
           )}
           {this.isAdmin() && (

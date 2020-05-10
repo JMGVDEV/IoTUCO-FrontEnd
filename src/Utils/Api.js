@@ -90,7 +90,8 @@ export const createUser = async (user) => {
     throw new Error();
   }
 
-  return response.json;
+  let json = await response.json();
+  return json.TwoFactorUrl;
 };
 
 export const updateUser = async (user) => {
@@ -256,13 +257,33 @@ export const saveInspection = async (inspection) => {
   return response;
 };
 
-/**
+export const getInspection = async (growbed_id) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(
+    SERVER_URL + INSPECTIONS_URL + `/?growbed_id=${growbed_id}`,
+    requestOptions,
+  );
+  return response.json();
+};
+
+/*
  *                    Actions
  */
 
-export const configLights = async (config) => {
+export const configLights = async (config, securityCode) => {
+  console.log(securityCode);
   var myHeaders = new Headers();
   myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('totp_code', securityCode);
   myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 
   var urlencoded = new URLSearchParams(config);
@@ -282,9 +303,10 @@ export const configLights = async (config) => {
   return response;
 };
 
-export const configBlinds = async (config) => {
+export const configBlinds = async (config, securityCode) => {
   var myHeaders = new Headers();
   myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('totp_code', securityCode);
   myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 
   var urlencoded = new URLSearchParams(config);

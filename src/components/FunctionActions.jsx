@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Button, Col } from 'react-bootstrap';
+import { Row, Button, Col, ButtonGroup, Form } from 'react-bootstrap';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import Typography from '@material-ui/core/Typography';
@@ -9,7 +9,6 @@ import {
   KeyboardTimePicker,
 } from '@material-ui/pickers';
 import { configLights, configBlinds } from '../Utils/Api';
-import { ButtonGroup } from '@material-ui/core';
 
 class ActionsComp extends React.Component {
   constructor(props) {
@@ -20,6 +19,7 @@ class ActionsComp extends React.Component {
       finalTime: null,
       finalHour: null,
       startHour: null,
+      securityCode: null,
     };
   }
 
@@ -46,7 +46,7 @@ class ActionsComp extends React.Component {
 
     this.props.setLoading(true);
     try {
-      await configBlinds(blinds_config);
+      await configBlinds(blinds_config, this.state.securityCode);
       this.props.showNotification(
         'success',
         'Ok',
@@ -73,7 +73,7 @@ class ActionsComp extends React.Component {
         time_init: this.state.startHour,
         time_end: this.state.finalHour,
       };
-      await configLights(lights_config);
+      await configLights(lights_config, this.state.securityCode);
       this.props.showNotification('success', 'Ok', 'Hora Configurada');
     } catch (error) {
       this.props.showNotification(
@@ -84,6 +84,11 @@ class ActionsComp extends React.Component {
     }
     this.props.setLoading(false);
   };
+
+  onChangeSecurityCode = (e) => {
+    this.setState({ securityCode: e.target.value });
+  };
+
   render() {
     return (
       <div>
@@ -127,40 +132,49 @@ class ActionsComp extends React.Component {
               </MuiPickersUtilsProvider>
             </Grid>
           </div>
-          <div style={{ padding: 10}}>
-          <Grid container justify="space-around">
-            <Row className="justify-content-around w-120 m-4 px-10 ">
-              <Col className="col-sm-4">
-                <Button
-                  onClick={this.Configure}
-                  variant="btn btn-outline-primary"
-                  value="Submit"
-                  color="primary"
-                  className=" btn-block">
-                  Configurar
-                </Button>
-              </Col>
-              <Col className="col-sm-8">
-                <ButtonGroup size="large" aria-label="large align center button group">
-                  <Button                 
-                    onClick={() => this.configBlinds(100)}
-                    key={100}
-                    variant="btn btn-outline-success"
-                    value="Submit"
-                    >
-                    Abrir Cortinas
-                  </Button>
-                  <Button             
-                    onClick={() => this.configBlinds(0)}
-                    key={0}
-                    variant="btn btn-outline-success"
-                    value="Submit"
-                    >
-                    Cerrar Cortinas
-                  </Button>
-                </ButtonGroup>  
-              </Col>
-            </Row>
+          <div style={{ padding: 10 }}>
+            <Grid container justify="space-around">
+              <Row className="justify-content-around w-120 m-4 px-10 ">
+                <Col className="col-sm-8">
+                  <div className="pb-2">
+                    <Form.Group>
+                      <Form.Control
+                        onChange={this.onChangeSecurityCode}
+                        type="text"
+                        placeholder="Ingrese Código de seguridad"
+                        required={true}
+                      />
+                    </Form.Group>
+                  </div>
+
+                  <ButtonGroup
+                    size="large"
+                    aria-label="large align center button group">
+                    <Button
+                      onClick={this.Configure}
+                      variant="btn btn-outline-primary"
+                      value="Submit"
+                      color="primary"
+                      className=" btn-block">
+                      Configurar
+                    </Button>
+                    <Button
+                      onClick={() => this.configBlinds(100)}
+                      key={100}
+                      variant="btn btn-outline-success"
+                      value="Submit">
+                      Abrir Cortinas
+                    </Button>
+                    <Button
+                      onClick={() => this.configBlinds(0)}
+                      key={0}
+                      variant="btn btn-outline-success"
+                      value="Submit">
+                      Cerrar Cortinas
+                    </Button>
+                  </ButtonGroup>
+                </Col>
+              </Row>
             </Grid>
           </div>
         </Col>

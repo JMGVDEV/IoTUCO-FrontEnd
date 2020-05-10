@@ -183,7 +183,7 @@ export default class UserCard extends Component {
                   variant="btn btn-outline-primary"
                   onClick={this.updateUser}
                   className=" btn-block">
-                  Actualizar
+                  Guardar
                 </Button>
               )}
             </Col>

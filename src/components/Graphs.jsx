@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import GaugeChart from "react-gauge-chart";
-import { Row, Col } from "react-bootstrap";
-import { getGrowBedEnvironment } from "../Utils/Api";
-import "../styles/graphs.css";
-import Typography from "@material-ui/core/Typography";
+import React, { Component } from 'react';
+import GaugeChart from 'react-gauge-chart';
+import { Row, Col } from 'react-bootstrap';
+import { getGrowBedEnvironment } from '../Utils/Api';
+import '../styles/graphs.css';
+import Typography from '@material-ui/core/Typography';
 
 export default class Graphs extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class Graphs extends Component {
     this.getEnvironmentData();
     this.interval = setInterval(
       this.getEnvironmentData,
-      this.props.interval * 1000
+      this.props.interval * 1000,
     );
   };
 
@@ -34,7 +34,7 @@ export default class Graphs extends Component {
     clearInterval(this.interval);
     this.interval = setInterval(
       this.getEnvironmentData,
-      this.props.interval * 1000
+      this.props.interval * 1000,
     );
   };
 
@@ -56,14 +56,13 @@ export default class Graphs extends Component {
   render() {
     return (
       <div className="mt-4 text-center">
-            <Typography
-                  align="center"
-                  variant="h3"
-                  style={{ color: "gray" }}
-                  gutterBottom
-              >
-                Variables Ambientales
-            </Typography>
+        <Typography
+          align="center"
+          variant="h3"
+          style={{ color: 'gray' }}
+          gutterBottom>
+          Información De La Cama
+        </Typography>
         <Row className=" pt-5 justify-content-center">
           <Col>
             <GaugeChart
@@ -73,7 +72,7 @@ export default class Graphs extends Component {
               id="gauge-chart1"
               className="gauge"
               percent={this.state.temperature}
-              formatTextValue={(value) => value + "°"}
+              formatTextValue={(value) => value + '°'}
             />
             <h3>Temperatura (°C)</h3>
           </Col>
@@ -85,7 +84,7 @@ export default class Graphs extends Component {
               percent={this.state.humidity}
               textColor="#777777"
               id="gauge-chart2"
-              formatTextValue={(value) => value + "%"}
+              formatTextValue={(value) => value + '%'}
             />
             <h3>Humedad (%)</h3>
           </Col>

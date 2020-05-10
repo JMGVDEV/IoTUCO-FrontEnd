@@ -10,13 +10,13 @@ export default class CreateUserForm extends Component {
 
     this.state = {
       user: { role: 'admin' },
-      IDcode: '123456',
+      twoFactorUrl: '',
       show: false,
     };
   }
 
   handleClose = () => {
-    this.setState({ show: false });
+    this.setState({ show: false, twoFactorUrl: '' });
   };
 
   handleShow() {
@@ -40,7 +40,8 @@ export default class CreateUserForm extends Component {
     this.props.setLoading(true);
 
     try {
-      await createUser(user);
+      let twoFactorUrl = await createUser(user);
+      this.setState({ twoFactorUrl });
       this.props.refreshUsers();
       this.handleShow();
       this.props.showNotification(
@@ -85,7 +86,7 @@ export default class CreateUserForm extends Component {
                     }
                     value={this.state.user.name}
                     type="text"
-                    placeholder="ingresar Nombre"
+                    placeholder="Ingresar Nombre"
                     required={true}
                   />
                 </Form.Group>
@@ -165,7 +166,7 @@ export default class CreateUserForm extends Component {
 
               <Col className="col-sm-4 pt-3">
                 <Form.Group>
-                  <Form.Label>Seleccionar Roll:</Form.Label>
+                  <Form.Label>Seleccionar Rol:</Form.Label>
                   <Form.Control
                     onChange={(e) =>
                       this.setState({
@@ -196,7 +197,7 @@ export default class CreateUserForm extends Component {
             </Row>
           </Form>
           <QRgen
-            IDcode={this.state.IDcode}
+            TwoFactorUrl={this.state.twoFactorUrl}
             handleClose={this.handleClose}
             show={this.state.show}
           />
