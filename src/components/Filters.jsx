@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Form } from "react-bootstrap";
-import { getGrowBeds, getGreenHouses } from "../Utils/Api";
-import invernadero from "./invernadero.svg"
+import React, { Component } from 'react';
+import { Form } from 'react-bootstrap';
+import { getGrowBeds, getGreenHouses } from '../Utils/Api';
+import invernadero from '../assets/invernadero.svg';
+//import invernadero from '../assets/greenhouse.png';
 
 export default class Filters extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export default class Filters extends Component {
 
     let greenHouseId = values[1][0].greenhouse;
     let growBeds = this.allGrowBeds.filter(
-      (growBed) => growBed.greenhouse == greenHouseId
+      (growBed) => growBed.greenhouse == greenHouseId,
     );
 
     this.setState({ greenHouses: values[1], growBeds, greenHouseId });
@@ -46,7 +47,7 @@ export default class Filters extends Component {
     let greenHouseId = e.target.value;
 
     let growBeds = this.allGrowBeds.filter(
-      (growBed) => growBed.greenhouse == greenHouseId
+      (growBed) => growBed.greenhouse == greenHouseId,
     );
 
     this.setState({ growBeds, greenHouseId });
@@ -68,24 +69,19 @@ export default class Filters extends Component {
   render() {
     return (
       <div>
-
         <div className="pt-3 text-center" style={{ padding: 20 }}>
           <h3>Selecionar Cama</h3>
           <img src={invernadero} width="120px" />
-          </div>
+        </div>
 
-        
-
-        <Form onSubmit={this.createUser} >
+        <Form onSubmit={this.createUser}>
           <Form.Group>
-
             <Form.Label>Invernaderos:</Form.Label>
 
             <Form.Control
               onChange={this.filterGrowBeds}
               as="select"
-              required={true}
-            >
+              required={true}>
               {this.state.greenHouses &&
                 this.state.greenHouses.map((green_house, idx) => (
                   <option key={idx} value={green_house.greenhouse}>
@@ -100,8 +96,7 @@ export default class Filters extends Component {
             <Form.Control
               onChange={this.handleGrowBedChange}
               as="select"
-              required={true}
-            >
+              required={true}>
               {this.state.growBeds &&
                 this.state.growBeds.map((grow_bed, idx) => (
                   <option key={idx} value={grow_bed.growbed}>
@@ -111,7 +106,6 @@ export default class Filters extends Component {
             </Form.Control>
           </Form.Group>
         </Form>
-
       </div>
     );
   }
