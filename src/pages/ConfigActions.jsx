@@ -49,7 +49,7 @@ class ConfigActions extends React.Component {
         <NavBarDark />
         <NotificationContainer />
         <Row className="content">
-          <Col className="col-md-3 w-100 shadow-lg pt-3 mt-3 text-center justify-content-center">
+          <Col className="col-md-3 w-100 shadow-lg pt-3 mt-3 ">
             <Filters handleFiltersChange={this.handleFiltersChange}></Filters>
           </Col>
           <Col className="col-md-9 px-10 text-center justify-content-center">

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Form } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThermometerQuarter } from "@fortawesome/free-solid-svg-icons";
 import { getGrowBeds, getGreenHouses } from "../Utils/Api";
+import invernadero from "./invernadero.svg"
 
 export default class Filters extends Component {
   constructor(props) {
@@ -70,18 +69,17 @@ export default class Filters extends Component {
     return (
       <div>
 
-        <div className="pt-3 text-center">
+        <div className="pt-3 text-center" style={{ padding: 20 }}>
           <h3>Selecionar Cama</h3>
-        </div>
+          <img src={invernadero} width="120px" />
+          </div>
 
-        <div className="icon text-center p-0 m-0">
-          <FontAwesomeIcon icon={faThermometerQuarter} color="#2AC218" />
-        </div>
+        
 
-        <Form onSubmit={this.createUser}>
+        <Form onSubmit={this.createUser} >
           <Form.Group>
 
-            <Form.Label>Invernaderos</Form.Label>
+            <Form.Label>Invernaderos:</Form.Label>
 
             <Form.Control
               onChange={this.filterGrowBeds}
@@ -98,7 +96,7 @@ export default class Filters extends Component {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Camas</Form.Label>
+            <Form.Label>Camas:</Form.Label>
             <Form.Control
               onChange={this.handleGrowBedChange}
               as="select"
@@ -113,6 +111,7 @@ export default class Filters extends Component {
             </Form.Control>
           </Form.Group>
         </Form>
+
       </div>
     );
   }

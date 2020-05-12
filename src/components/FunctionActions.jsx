@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
@@ -35,6 +36,31 @@ class ActionsComp extends React.Component {
     let time = e.toString().split(' ')[4].split(':');
     time = `${time[0]}:${time[1]}:00`;
     this.setState({ startHour: time });
+  };
+
+  configDoor = async (value) => {
+    let Door_config = {
+      zone: 1,
+      greenhouse: this.props.greenHouseId,
+      value,
+    };
+
+    this.props.setLoading(true);
+    try {
+     // await configDoor(Door_config, this.state.securityCode);
+      this.props.showNotification(
+        'success',
+        'Ok',
+        'Se cambío el estado de la puerta',
+      );
+    } catch (error) {
+      this.props.showNotification(
+        'error',
+        'Error',
+        'Algo salió mal al abrir o cerrar la puerta',
+      );
+    }
+    this.props.setLoading(false);
   };
 
   configBlinds = async (value) => {
@@ -92,7 +118,7 @@ class ActionsComp extends React.Component {
   render() {
     return (
       <div>
-        <Col className="col-md-10">
+        <Col className="col-md-20">
           <Box my={1} alignItems="center" justifyContent="center">
             <Typography
               align="center"
@@ -102,14 +128,14 @@ class ActionsComp extends React.Component {
               Seleccionar Horario
             </Typography>
           </Box>
-          <div style={{ padding: 100 }}>
+          <div style={{ padding: 50 }}>
             <Grid container justify="space-around">
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardTimePicker
                   inputVariant="outlined"
                   margin="normal"
                   id="start-time-picker"
-                  label="Start Time"
+                  label="Hora Inicial"
                   value={this.state.startTime}
                   onChange={this.startTime}
                   KeyboardButtonProps={{
@@ -122,7 +148,7 @@ class ActionsComp extends React.Component {
                   variant="primary"
                   margin="normal"
                   id="final-time-picker"
-                  label="Final Time"
+                  label="Hora Final"
                   value={this.state.finalTime}
                   onChange={this.finalTime}
                   KeyboardButtonProps={{
@@ -131,11 +157,23 @@ class ActionsComp extends React.Component {
                 />
               </MuiPickersUtilsProvider>
             </Grid>
-          </div>
-          <div style={{ padding: 10 }}>
+            <div style={{ padding: 10 }}>
+                  <Button
+                      onClick={this.Configure}
+                      variant="btn btn-outline-primary"
+                      value="Submit"
+                      size="small"
+                      color="primary"
+                      className="btn-lg">
+                      Configurar
+                  </Button>
+                  </div>
+          
+          <div style={{ padding: 2 }}>
             <Grid container justify="space-around">
               <Row className="justify-content-around w-120 m-4 px-10 ">
                 <Col className="col-sm-8">
+
                   <div className="pb-2">
                     <Form.Group>
                       <Form.Control
@@ -146,39 +184,71 @@ class ActionsComp extends React.Component {
                       />
                     </Form.Group>
                   </div>
-
+                  </Col>
+                  <Grid container justify="space-around" >
+                  
+                  
                   <ButtonGroup
                     size="large"
-                    aria-label="large align center button group">
-                    <Button
-                      onClick={this.Configure}
-                      variant="btn btn-outline-primary"
-                      value="Submit"
-                      color="primary"
-                      className=" btn-block">
-                      Configurar
-                    </Button>
+                    className="btn-group-vertical btn-group-lg">
+                      <Typography
+                        align="center"
+                        variant="h5"
+                        style={{ color: 'gray' }}
+                        gutterBottom>
+                        Cortinas:
+                      </Typography>
                     <Button
                       onClick={() => this.configBlinds(100)}
                       key={100}
                       variant="btn btn-outline-success"
                       value="Submit">
-                      Abrir Cortinas
+                      Abrir
                     </Button>
                     <Button
                       onClick={() => this.configBlinds(0)}
                       key={0}
                       variant="btn btn-outline-success"
                       value="Submit">
-                      Cerrar Cortinas
+                      Cerrar
                     </Button>
                   </ButtonGroup>
-                </Col>
+                  
+                  <ButtonGroup
+                    size="large"
+                    className= "btn-group-vertical btn-group-lg">
+                      <Typography
+                        align="center"
+                        variant="h5"
+                        style={{ color: 'gray' }}
+                        gutterBottom>
+                        Puerta:
+                      </Typography>
+                    <Button
+                      onClick={() => this.configDoor(100)}
+                      key={100}
+                      variant="btn btn-outline-success"
+                      value="Submit">
+                      Abrir
+                    </Button>
+                    <Button
+                      onClick={() => this.configDoor (0)}
+                      key={0}
+                      variant="btn btn-outline-success "
+                      value="Submit">
+                      Cerrar 
+                    </Button>
+                  </ButtonGroup>
+                  </Grid>
+                
               </Row>
             </Grid>
           </div>
+          </div>
         </Col>
+        
       </div>
+      
     );
   }
 }

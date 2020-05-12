@@ -52,7 +52,7 @@ export default class Diseases extends React.Component {
         <NavBarDark />
         <NotificationContainer />
         <Row className="content">
-          <Col className="col-md-3 w-100 shadow-lg pt-1 mt-4 text-center justify-content-center">
+          <Col className="col-md-3 w-100 shadow-lg pt-1 mt-4">
             <Filters handleFiltersChange={this.handleFiltersChange} />
           </Col>
           <Col className="col-md-8 px-5">
