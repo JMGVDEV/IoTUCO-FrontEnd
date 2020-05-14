@@ -9,7 +9,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
 } from '@material-ui/pickers';
-import { configLights, configBlinds } from '../Utils/Api';
+import { configLights, configBlinds, configDoor } from '../Utils/Api';
 
 class ActionsComp extends React.Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class ActionsComp extends React.Component {
 
     this.props.setLoading(true);
     try {
-     // await configDoor(Door_config, this.state.securityCode);
+      await configDoor(Door_config, this.state.securityCode);
       this.props.showNotification(
         'success',
         'Ok',
@@ -158,39 +158,36 @@ class ActionsComp extends React.Component {
               </MuiPickersUtilsProvider>
             </Grid>
             <div style={{ padding: 10 }}>
-                  <Button
-                      onClick={this.Configure}
-                      variant="btn btn-outline-primary"
-                      value="Submit"
-                      size="small"
-                      color="primary"
-                      className="btn-lg">
-                      Configurar
-                  </Button>
-                  </div>
-          
-          <div style={{ padding: 2 }}>
-            <Grid container justify="space-around">
-              <Row className="justify-content-around w-120 m-4 px-10 ">
-                <Col className="col-sm-8">
+              <Button
+                onClick={this.Configure}
+                variant="btn btn-outline-primary"
+                value="Submit"
+                size="small"
+                color="primary"
+                className="btn-lg">
+                Configurar
+              </Button>
+            </div>
 
-                  <div className="pb-2">
-                    <Form.Group>
-                      <Form.Control
-                        onChange={this.onChangeSecurityCode}
-                        type="text"
-                        placeholder="Ingrese Código de seguridad"
-                        required={true}
-                      />
-                    </Form.Group>
-                  </div>
+            <div style={{ padding: 2 }}>
+              <Grid container justify="space-around">
+                <Row className="justify-content-around w-120 m-4 px-10 ">
+                  <Col className="col-sm-8">
+                    <div className="pb-2">
+                      <Form.Group>
+                        <Form.Control
+                          onChange={this.onChangeSecurityCode}
+                          type="text"
+                          placeholder="Ingrese Código de seguridad"
+                          required={true}
+                        />
+                      </Form.Group>
+                    </div>
                   </Col>
-                  <Grid container justify="space-around" >
-                  
-                  
-                  <ButtonGroup
-                    size="large"
-                    className="btn-group-vertical btn-group-lg">
+                  <Grid container justify="space-around">
+                    <ButtonGroup
+                      size="large"
+                      className="btn-group-vertical btn-group-lg">
                       <Typography
                         align="center"
                         variant="h5"
@@ -198,25 +195,25 @@ class ActionsComp extends React.Component {
                         gutterBottom>
                         Cortinas:
                       </Typography>
-                    <Button
-                      onClick={() => this.configBlinds(100)}
-                      key={100}
-                      variant="btn btn-outline-success"
-                      value="Submit">
-                      Abrir
-                    </Button>
-                    <Button
-                      onClick={() => this.configBlinds(0)}
-                      key={0}
-                      variant="btn btn-outline-success"
-                      value="Submit">
-                      Cerrar
-                    </Button>
-                  </ButtonGroup>
-                  
-                  <ButtonGroup
-                    size="large"
-                    className= "btn-group-vertical btn-group-lg">
+                      <Button
+                        onClick={() => this.configBlinds(100)}
+                        key={100}
+                        variant="btn btn-outline-success"
+                        value="Submit">
+                        Abrir
+                      </Button>
+                      <Button
+                        onClick={() => this.configBlinds(0)}
+                        key={0}
+                        variant="btn btn-outline-success"
+                        value="Submit">
+                        Cerrar
+                      </Button>
+                    </ButtonGroup>
+
+                    <ButtonGroup
+                      size="large"
+                      className="btn-group-vertical btn-group-lg">
                       <Typography
                         align="center"
                         variant="h5"
@@ -224,31 +221,28 @@ class ActionsComp extends React.Component {
                         gutterBottom>
                         Puerta:
                       </Typography>
-                    <Button
-                      onClick={() => this.configDoor(100)}
-                      key={100}
-                      variant="btn btn-outline-success"
-                      value="Submit">
-                      Abrir
-                    </Button>
-                    <Button
-                      onClick={() => this.configDoor (0)}
-                      key={0}
-                      variant="btn btn-outline-success "
-                      value="Submit">
-                      Cerrar 
-                    </Button>
-                  </ButtonGroup>
+                      <Button
+                        onClick={() => this.configDoor(100)}
+                        key={100}
+                        variant="btn btn-outline-success"
+                        value="Submit">
+                        Abrir
+                      </Button>
+                      <Button
+                        onClick={() => this.configDoor(0)}
+                        key={0}
+                        variant="btn btn-outline-success "
+                        value="Submit">
+                        Cerrar
+                      </Button>
+                    </ButtonGroup>
                   </Grid>
-                
-              </Row>
-            </Grid>
-          </div>
+                </Row>
+              </Grid>
+            </div>
           </div>
         </Col>
-        
       </div>
-      
     );
   }
 }

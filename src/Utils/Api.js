@@ -2,8 +2,8 @@
  * URL SERVER
  */
 
-const SERVER_URL = 'http://3.22.57.173:3000';
-//const SERVER_URL = 'http://127.0.0.1:3001';
+//const SERVER_URL = 'http://3.22.57.173:3000';
+const SERVER_URL = 'http://127.0.0.1:3001';
 
 /*
  * SERVER PATHS
@@ -16,6 +16,7 @@ const PEST_URL = '/api/pests';
 const INSPECTIONS_URL = '/api/inspection';
 const LIGHTS_URL = '/api/control/lights';
 const BLINDS_CONTROL_URL = '/api/control/blinds';
+const DOOR_CONTROL_URL = '/api/control/door';
 
 /*----------------------------------------------------------
 * 
@@ -319,6 +320,30 @@ export const configBlinds = async (config, securityCode) => {
   };
 
   let response = await fetch(SERVER_URL + BLINDS_CONTROL_URL, requestOptions);
+
+  if (!response.ok) {
+    throw new Error();
+  }
+
+  return response.json();
+};
+
+export const configDoor = async (config, securityCode) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('totp_code', securityCode);
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var urlencoded = new URLSearchParams(config);
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(SERVER_URL + DOOR_CONTROL_URL, requestOptions);
 
   if (!response.ok) {
     throw new Error();
