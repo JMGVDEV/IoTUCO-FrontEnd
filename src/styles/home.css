@@ -1,0 +1,16 @@
+.body {
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 0;
+  height: 100vh;
+}
+
+.content {
+  margin: 0 0 0 10px !important;
+  height: 90%;
+}
+
+.filters {
+  margin-top: 10px !important;
+  padding-top: 20px !important;
+}

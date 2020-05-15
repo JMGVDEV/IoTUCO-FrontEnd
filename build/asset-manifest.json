@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e5c79244.chunk.css",
+    "main.js": "/static/js/main.c932905c.chunk.js",
+    "main.js.map": "/static/js/main.c932905c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.b3f2fc06.js",
+    "runtime-main.js.map": "/static/js/runtime-main.b3f2fc06.js.map",
+    "static/css/2.351bdf83.chunk.css": "/static/css/2.351bdf83.chunk.css",
+    "static/js/2.be010d03.chunk.js": "/static/js/2.be010d03.chunk.js",
+    "static/js/2.be010d03.chunk.js.map": "/static/js/2.be010d03.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.5bc34c1acd5fbbdff8442d0195071255.js": "/precache-manifest.5bc34c1acd5fbbdff8442d0195071255.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.351bdf83.chunk.css.map": "/static/css/2.351bdf83.chunk.css.map",
+    "static/css/main.e5c79244.chunk.css.map": "/static/css/main.e5c79244.chunk.css.map",
+    "static/js/2.be010d03.chunk.js.LICENSE.txt": "/static/js/2.be010d03.chunk.js.LICENSE.txt",
+    "static/media/invernadero.svg": "/static/media/invernadero.f0c0b509.svg",
+    "static/media/notifications.css": "/static/media/notification.c0d3c94c.eot"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b3f2fc06.js",
+    "static/css/2.351bdf83.chunk.css",
+    "static/js/2.be010d03.chunk.js",
+    "static/css/main.e5c79244.chunk.css",
+    "static/js/main.c932905c.chunk.js"
+  ]
+}
