@@ -15,6 +15,11 @@ export default class NavBarDark extends Component {
     return role == 'admin' ? true : false;
   };
 
+  isViewer = () => {
+    let role = localStorage.getItem('role');
+    return role == 'viewer' ? true : false;
+  };
+
   render() {
     return (
       <Navbar bg="dark" variant="dark">
@@ -32,12 +37,12 @@ export default class NavBarDark extends Component {
               Admin Usuarios
             </Nav.Link>
           )}
-          {this.isAdmin() && (
+          {this.isViewer() && (
             <Nav.Link as={Link} to="/diseases">
               Estado Cama
             </Nav.Link>
           )}
-          {this.isAdmin() && (
+          {this.isViewer() && (
             <Nav.Link as={Link} to="/configactions">
               Acciones
             </Nav.Link>
