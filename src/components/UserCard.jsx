@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsersCog } from '@fortawesome/free-solid-svg-icons';
+import { getGrowBeds, getGreenHouses } from '../Utils/Api';
+import { RiUserSettingsLine} from "react-icons/ri";
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { updateUser, deleteUser } from '../Utils/Api';
 import Typography from '@material-ui/core/Typography';
@@ -102,7 +102,7 @@ export default class UserCard extends Component {
         <div className="text-center pb-3 shadow-lg">
           <Row className="d-flex flex-column align-items-center">
             <div className="icon p-0 m-0">
-              <FontAwesomeIcon icon={faUsersCog} color="gray" />
+              <RiUserSettingsLine classame="usr" color="2AC218" size="120px" width="200px"  />
             </div>
 
             <Form className="w-75">
