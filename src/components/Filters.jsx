@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'react-bootstrap';
 import { getGrowBeds, getGreenHouses } from '../Utils/Api';
-import invernadero from '../assets/invernadero.svg';
+import { GiGreenhouse} from "react-icons/gi";
 //import invernadero from '../assets/greenhouse.png';
 
 export default class Filters extends Component {
@@ -70,8 +70,8 @@ export default class Filters extends Component {
     return (
       <div>
         <div className="pt-3 text-center" style={{ padding: 20 }}>
-          <h3>Selecionar Cama</h3>
-          <img src={invernadero} width="120px" />
+          <h3>Seleccionar Cama</h3>
+          <GiGreenhouse classame="usr" color="2AC218" size="120px" width="200px" />
         </div>
 
         <Form onSubmit={this.createUser}>
