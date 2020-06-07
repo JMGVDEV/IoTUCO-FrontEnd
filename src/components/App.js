@@ -5,6 +5,10 @@ import HomePage from '../pages/HomePage';
 import ConfigActions from '../pages/ConfigActions';
 import Diseases from '../pages/Diseases';
 import Users from '../pages/Users';
+import DB1 from '../pages/GHCamas'
+import DB2 from '../pages/GEvents'
+import DB3 from '../pages/GGradosDia'
+import DB4 from '../pages/GDiseases'
 
 function App() {
   return (
@@ -15,6 +19,12 @@ function App() {
         <AuthenticatedRoute path="/users" component={Users} />
         <AuthenticatedRoute path="/configactions" component={ConfigActions} />
         <AuthenticatedRoute path="/diseases" component={Diseases} />
+        <AuthenticatedRoute path="/DB1" component={DB1} />
+        <AuthenticatedRoute path="/DB2" component={DB2} />
+        <AuthenticatedRoute path="/DB3" component={DB3} />
+        <AuthenticatedRoute path="/DB4" component={DB4} />
+
+
       </div>
     </Router>
   );
