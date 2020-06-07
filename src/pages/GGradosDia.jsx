@@ -101,7 +101,7 @@ export default class DB3 extends React.Component {
           opacity: 1,
         },
         theme: {
-          palette: 'palette4', // upto palette10
+          palette: 'palette1', // upto palette10
         },
         tooltip: {
           y: {
@@ -146,7 +146,7 @@ export default class DB3 extends React.Component {
                 series={this.state.series}
                 type="bar"
                 height={300}
-                width={1000}
+                width={950}
               />
             </div>
           </Col>

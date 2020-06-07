@@ -113,7 +113,7 @@ export default class DB2 extends React.Component {
           opacity: 1,
         },
         theme: {
-          palette: 'palette4', // upto palette10
+          palette: 'palette1', // upto palette10
         },
         legend: {
           position: 'top',
@@ -154,7 +154,7 @@ export default class DB2 extends React.Component {
                 options={this.state.options}
                 series={this.state.series}
                 type="bar"
-                height={500}
+                height={350}
               />
             </div>
           </Col>
