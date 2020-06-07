@@ -86,7 +86,7 @@ export default class UserCard extends Component {
           <Form.Group placeholder="Seleccione">
             <Form.Control onChange={this.setUser} as="select">
               <option value="" defaultValue selected disabled>
-                Seleccione un usuario
+                Seleccione un Usuario
               </option>
               {this.props.users.map((user) => {
                 return (
