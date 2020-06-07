@@ -9,7 +9,12 @@ import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
 } from '@material-ui/pickers';
+<<<<<<< HEAD
 import { configLights, configBlinds, configDoor } from '../Utils/Api';
+=======
+import { configLights, configBlinds } from '../Utils/Api';
+import EMod from '../components/EncryptModal';
+>>>>>>> 888102c1017d3d08367d3d31836bb48ac96e3121
 
 class ActionsComp extends React.Component {
   constructor(props) {
@@ -118,7 +123,12 @@ class ActionsComp extends React.Component {
   render() {
     return (
       <div>
+<<<<<<< HEAD
         <Col className="col-md-20">
+=======
+        <EMod />
+        <Col className="col-md-10">
+>>>>>>> 888102c1017d3d08367d3d31836bb48ac96e3121
           <Box my={1} alignItems="center" justifyContent="center">
             <Typography
               align="center"
