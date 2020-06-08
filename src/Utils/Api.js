@@ -19,6 +19,7 @@ const BLINDS_CONTROL_URL = '/api/control/blinds';
 const DOOR_CONTROL_URL = '/api/control/door';
 
 const DB_DEGREES_DAY = '/api/dashboards/degrees';
+const DB_EVENTS = '/api/dashboards/events';
 
 /*----------------------------------------------------------
 * 
@@ -377,4 +378,22 @@ export const getDegreesDay = async (greenhouse, growbed) => {
   );
   data = await data.json();
   return data;
+};
+
+export const getEvents = async (greenhouse) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(
+    SERVER_URL + DB_EVENTS + `?greenhouse=${greenhouse}`,
+    requestOptions,
+  );
+  return response.json();
 };

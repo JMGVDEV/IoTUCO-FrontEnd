@@ -4,15 +4,7 @@ import NavBarDark from '../components/NavBarDark';
 import Filters from '../components/Filters';
 import { Row, Col } from 'react-bootstrap';
 import Typography from '@material-ui/core/Typography';
-import {
-  format,
-  formatDistance,
-  formatRelative,
-  subDays,
-  formatDistanceToNow,
-} from 'date-fns';
-import { es } from 'date-fns/locale';
-import { toDate } from 'date-fns/esm';
+import { getEvents } from '../Utils/Api';
 
 export default class DB2 extends React.Component {
   constructor(props) {
@@ -67,39 +59,25 @@ export default class DB2 extends React.Component {
           text: 'Eventos del Sistema',
         },
         xaxis: {
-          categories: [
-            'Hace ' +
-              formatDistance(subDays(new Date(), 5), new Date(), {
-                locale: es,
-              }),
-            'Hace ' +
-              formatDistance(subDays(new Date(), 4), new Date(), {
-                locale: es,
-              }),
-            'Hace ' +
-              formatDistance(subDays(new Date(), 3), new Date(), {
-                locale: es,
-              }),
-            'Hace ' +
-              formatDistance(subDays(new Date(), 2), new Date(), {
-                locale: es,
-              }),
-            formatRelative(subDays(new Date(), 1), new Date(), { locale: es }),
-            formatRelative(subDays(new Date(), 0), new Date(), { locale: es }),
-          ],
-          labels: {
-            formatter: function (val) {
-              return val;
-            },
-          },
+          categories: [],
           title: {
             text: 'Eventos Totales',
           },
-        
         },
         yaxis: {
+          type: 'datetime',
+          labels: {
+            datetimeUTC: true,
+            datetimeFormatter: {
+              year: 'yyyy',
+              month: "MMM 'yy",
+              day: 'dd MMM',
+              hour: 'HH:mm',
+            },
+          },
+
           title: {
-            text: 'Día',
+            text: 'Fecha',
           },
         },
         tooltip: {
@@ -128,6 +106,20 @@ export default class DB2 extends React.Component {
     this.setState({
       growBedId: filters.growBedId,
       greenHouseId: filters.greenHouseId,
+    });
+    this.getData(filters.greenHouseId);
+  };
+
+  getData = async (greenhouse) => {
+    let res = await getEvents(greenhouse);
+
+    this.setState({
+      series: res.data.series,
+      options: {
+        xaxis: {
+          categories: res.data.date,
+        },
+      },
     });
   };
 
