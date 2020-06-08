@@ -2,8 +2,8 @@
  * URL SERVER
  */
 
-//const SERVER_URL = 'http://3.22.57.173:3000';
-const SERVER_URL = 'http://192.168.1.100:3001';
+const SERVER_URL = 'http://3.22.57.173:3000';
+//const SERVER_URL = 'http://192.168.1.100:3001';
 
 /*
  * SERVER PATHS
