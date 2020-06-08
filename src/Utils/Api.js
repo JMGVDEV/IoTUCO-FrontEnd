@@ -2,7 +2,8 @@
  * URL SERVER
  */
 
-const SERVER_URL = 'http://3.22.57.173:3000';
+//const SERVER_URL = 'http://3.22.57.173:3000';
+const SERVER_URL = 'http://192.168.1.100:3001';
 
 /*
  * SERVER PATHS
@@ -16,6 +17,8 @@ const INSPECTIONS_URL = '/api/inspection';
 const LIGHTS_URL = '/api/control/lights';
 const BLINDS_CONTROL_URL = '/api/control/blinds';
 const DOOR_CONTROL_URL = '/api/control/door';
+
+const DB_DEGREES_DAY = '/api/dashboards/degrees';
 
 /*----------------------------------------------------------
 * 
@@ -349,4 +352,29 @@ export const configDoor = async (config, securityCode) => {
   }
 
   return response.json();
+};
+
+/*
+ *                    Dashboards
+ */
+
+export const getDegreesDay = async (greenhouse, growbed) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  let data = await fetch(
+    SERVER_URL +
+      DB_DEGREES_DAY +
+      `?greenhouse=${greenhouse}&growbed=${growbed}`,
+    requestOptions,
+  );
+  data = await data.json();
+  return data;
 };

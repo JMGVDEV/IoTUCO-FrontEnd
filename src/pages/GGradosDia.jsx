@@ -4,15 +4,7 @@ import NavBarDark from '../components/NavBarDark';
 import Filters from '../components/Filters';
 import { Row, Col } from 'react-bootstrap';
 import Typography from '@material-ui/core/Typography';
-import {
-  format,
-  formatDistance,
-  formatRelative,
-  subDays,
-  formatDistanceToNow,
-} from 'date-fns';
-import { es } from 'date-fns/locale';
-import { toDate } from 'date-fns/esm';
+import { getDegreesDay } from '../Utils/Api';
 
 export default class DB3 extends React.Component {
   constructor(props) {
@@ -20,12 +12,7 @@ export default class DB3 extends React.Component {
     this.state = {
       growBedId: null,
       greenHouseId: null,
-      series: [
-        {
-          name: 'Grados día',
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66, 70],
-        },
-      ],
+      series: [],
       options: {
         chart: {
           type: 'bar',
@@ -46,50 +33,23 @@ export default class DB3 extends React.Component {
           colors: ['transparent'],
         },
         xaxis: {
-          categories: [
-            format(new Date(), "'Hoy' iiii", {
-              locale: es,
-            }),
-            'Hace ' +
-              formatDistance(subDays(new Date(), 1), new Date(), {
-                locale: es,
-              }),
-            'Hace ' +
-              formatDistance(subDays(new Date(), 2), new Date(), {
-                locale: es,
-              }),
-            'Hace ' +
-              formatDistance(subDays(new Date(), 3), new Date(), {
-                locale: es,
-              }),
-            'Hace ' +
-              formatDistance(subDays(new Date(), 4), new Date(), {
-                locale: es,
-              }),
-            'Hace ' +
-              formatDistance(subDays(new Date(), 5), new Date(), {
-                locale: es,
-              }),
-            'Hace ' +
-              formatDistance(subDays(new Date(), 6), new Date(), {
-                locale: es,
-              }),
-            'Hace ' +
-              formatDistance(subDays(new Date(), 7), new Date(), {
-                locale: es,
-              }),
-            'Hace ' +
-              formatDistance(subDays(new Date(), 8), new Date(), {
-                locale: es,
-              }),
-            'Hace ' +
-              formatDistance(subDays(new Date(), 9), new Date(), {
-                locale: es,
-              }),
-          ],
-
+          categories: [],
+          type: 'datetime',
+          labels: {
+            rotate: -45,
+            format: undefined,
+            formatter: undefined,
+            datetimeUTC: true,
+            datetimeFormatter: {
+              year: 'yyyy',
+              month: "MMM 'yy",
+              day: 'dd MMM',
+              hour: 'HH:mm',
+            },
+          },
           title: {
             text: 'Época de evaluación (días)',
+            offsetY: 10,
           },
         },
         yaxis: {
@@ -111,6 +71,7 @@ export default class DB3 extends React.Component {
           },
         },
       },
+      toggle: true,
     };
   }
 
@@ -118,6 +79,20 @@ export default class DB3 extends React.Component {
     this.setState({
       growBedId: filters.growBedId,
       greenHouseId: filters.greenHouseId,
+    });
+    this.getData(filters.greenHouseId, filters.growBedId);
+  };
+
+  getData = async (greenhouse, growbed) => {
+    let res = await getDegreesDay(greenhouse, growbed);
+
+    this.setState({
+      series: [{ name: 'Grados día', data: res.data.degrees }],
+      options: {
+        xaxis: {
+          categories: res.data.date,
+        },
+      },
     });
   };
 

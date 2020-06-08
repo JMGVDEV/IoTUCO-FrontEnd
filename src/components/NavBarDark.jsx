@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav , NavDropdown} from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
@@ -47,11 +47,19 @@ export default class NavBarDark extends Component {
               Acciones
             </Nav.Link>
           )}
-          <NavDropdown title="DashBoards" >
-            <NavDropdown.Item  href ="/DB1">Historial de camas</NavDropdown.Item>
-            <NavDropdown.Item href="/DB2">Gráfica de eventos</NavDropdown.Item>
-            <NavDropdown.Item href="/DB3">Gráfica grados día</NavDropdown.Item>
-            <NavDropdown.Item href="/DB4">Gráfica de enfermedades</NavDropdown.Item>
+          <NavDropdown title="DashBoards">
+            <NavDropdown.Item as={Link} to="/DB1">
+              Historial de camas
+            </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/DB2">
+              Gráfica de eventos
+            </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/DB3">
+              Gráfica grados día
+            </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/DB4">
+              Gráfica de enfermedades
+            </NavDropdown.Item>
           </NavDropdown>
           <Nav.Link as={Link} to="/">
             <span onClick={this.logout}> Cerrar Sesión </span>
