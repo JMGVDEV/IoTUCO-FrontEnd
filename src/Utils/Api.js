@@ -20,6 +20,8 @@ const DOOR_CONTROL_URL = '/api/control/door';
 
 const DB_DEGREES_DAY = '/api/dashboards/degrees';
 const DB_EVENTS = '/api/dashboards/events';
+const DB_HISTORICAL = '/api/dashboards/historical';
+const DB_DISEASES = '/api/dashboards/diseases';
 
 /*----------------------------------------------------------
 * 
@@ -395,5 +397,42 @@ export const getEvents = async (greenhouse) => {
     SERVER_URL + DB_EVENTS + `?greenhouse=${greenhouse}`,
     requestOptions,
   );
+  return response.json();
+};
+
+export const getHistoricalEnvironment = async (greenhouse, growbed) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(
+    SERVER_URL + DB_HISTORICAL + `?growbed=${growbed}&greenhouse=${greenhouse}`,
+    requestOptions,
+  );
+  return response.json();
+};
+
+export const getDiseasesCount = async (greenhouse) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(
+    SERVER_URL + DB_DISEASES + `?greenhouse=${greenhouse}`,
+    requestOptions,
+  );
+
   return response.json();
 };
