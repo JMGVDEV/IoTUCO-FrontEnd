@@ -94,8 +94,9 @@ export default class DiseaseForm extends Component {
               type="submit"
               value="Submit"
               variant="btn btn-outline-primary"
-              className="btn-block w-50 ">
-              Enviar
+              className="btn-block w-50 "
+              >
+              SAVE
             </Button>
           </div>
         </Form>

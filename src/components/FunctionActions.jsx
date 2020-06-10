@@ -10,6 +10,7 @@ import {
   KeyboardTimePicker,
 } from '@material-ui/pickers';
 import { configLights, configBlinds, configDoor } from '../Utils/Api';
+import EMod from '../components/EncryptModal';
 
 class ActionsComp extends React.Component {
   constructor(props) {
@@ -118,7 +119,8 @@ class ActionsComp extends React.Component {
   render() {
     return (
       <div>
-        <Col className="col-md-20">
+        <EMod />
+        <Col className="col-md-10">
           <Box my={1} alignItems="center" justifyContent="center">
             <Typography
               align="center"

@@ -3,6 +3,9 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { createUser } from '../Utils/Api';
 import Typography from '@material-ui/core/Typography';
 import QRgen from '../components/QRgenerator';
+import zxcvbn from 'zxcvbn';
+import { id } from 'date-fns/esm/locale';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 export default class CreateUserForm extends Component {
   constructor(props) {
@@ -12,6 +15,7 @@ export default class CreateUserForm extends Component {
       user: { role: 'admin' },
       twoFactorUrl: '',
       show: false,
+      BoxDisable: true,
     };
   }
 
@@ -60,6 +64,20 @@ export default class CreateUserForm extends Component {
     this.props.setLoading(false);
   };
 
+  onChangePassword = (e) => {
+    this.setState({
+      user: { ...this.state.user, password: e.target.value },
+    });
+    var auth = zxcvbn(e.target.value);
+    console.log(auth.score);
+    console.log(auth);
+    if (auth.score > 2) {
+      this.setState({ BoxDisable: false });
+    } else {
+      this.setState({ BoxDisable: true });
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -70,6 +88,18 @@ export default class CreateUserForm extends Component {
             style={{ color: 'gray' }}
             gutterBottom>
             Crear Usuario:
+          </Typography>
+        </div>
+        <div>
+          <Typography
+            align="center"
+            variant="h6"
+            style={{ color: 'gray' }}
+            gutterBottom>
+            Los campos: "Nombre", "Correo Electrónico, "Contraseña" y "Confirmar
+            Contraseña" son obligatorios; y debe ingresar una contraseña
+            "aceptable" según la barra de progreso para habilitar la creación de
+            usuarios.
           </Typography>
         </div>
         <div className="pt-5 text-center">
@@ -86,7 +116,7 @@ export default class CreateUserForm extends Component {
                     }
                     value={this.state.user.name}
                     type="text"
-                    placeholder="Ingresar Nombre"
+                    placeholder="Ingrese Nombre"
                     required={true}
                   />
                 </Form.Group>
@@ -103,7 +133,7 @@ export default class CreateUserForm extends Component {
                     }
                     value={this.state.user.last_name}
                     type="text"
-                    placeholder="Ingresar Apellidos"
+                    placeholder="Ingrese Apellidos"
                   />
                 </Form.Group>
               </Col>
@@ -119,7 +149,7 @@ export default class CreateUserForm extends Component {
                     }
                     value={this.state.user.email}
                     type="email"
-                    placeholder="Ingresar Correo Electrónico"
+                    placeholder="Ejemplo: usuario@dominio.com"
                     required={true}
                   />
                 </Form.Group>
@@ -129,17 +159,29 @@ export default class CreateUserForm extends Component {
             <Row>
               <Col className="col-sm-4 pt-3">
                 <Form.Group>
-                  <Form.Label>contraseña:</Form.Label>
+                  <Form.Label>Contraseña:</Form.Label>
                   <Form.Control
-                    onChange={(e) =>
-                      this.setState({
-                        user: { ...this.state.user, password: e.target.value },
-                      })
-                    }
+                    onChange={this.onChangePassword}
                     value={this.state.user.password}
                     type="password"
-                    placeholder="************"
+                    name="password"
+                    placeholder="Ingrese una Contraseña Aceptable"
                     required={true}
+                    minLength={8}
+                  />
+                  <PasswordStrengthBar
+                    className="customClass"
+                    minLength={8}
+                    minScore={2}
+                    shortScoreWord={'Nula'}
+                    scoreWords={[
+                      'Nula',
+                      'Muy Débil',
+                      'Débil',
+                      'Aceptable',
+                      'Fuerte',
+                    ]}
+                    password={this.state.user.password}
                   />
                 </Form.Group>
               </Col>
@@ -187,6 +229,7 @@ export default class CreateUserForm extends Component {
                 <div className="d-flex justify-content-center pt-5">
                   <Button
                     type="submit"
+                    disabled={this.state.BoxDisable}
                     value="Submit"
                     variant="btn btn-outline-primary"
                     className="btn-block w-50 ">

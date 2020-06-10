@@ -2,8 +2,8 @@
  * URL SERVER
  */
 
-const SERVER_URL = 'http://34.238.41.157:3001';
-//const SERVER_URL = 'http://127.0.0.1:3001';
+const SERVER_URL = 'http://3.22.57.173:3000';
+//const SERVER_URL = 'http://192.168.1.100:3001';
 
 /*
  * SERVER PATHS
@@ -17,6 +17,11 @@ const INSPECTIONS_URL = '/api/inspection';
 const LIGHTS_URL = '/api/control/lights';
 const BLINDS_CONTROL_URL = '/api/control/blinds';
 const DOOR_CONTROL_URL = '/api/control/door';
+
+const DB_DEGREES_DAY = '/api/dashboards/degrees';
+const DB_EVENTS = '/api/dashboards/events';
+const DB_HISTORICAL = '/api/dashboards/historical';
+const DB_DISEASES = '/api/dashboards/diseases';
 
 /*----------------------------------------------------------
 * 
@@ -348,6 +353,86 @@ export const configDoor = async (config, securityCode) => {
   if (!response.ok) {
     throw new Error();
   }
+
+  return response.json();
+};
+
+/*
+ *                    Dashboards
+ */
+
+export const getDegreesDay = async (greenhouse, growbed) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  let data = await fetch(
+    SERVER_URL +
+      DB_DEGREES_DAY +
+      `?greenhouse=${greenhouse}&growbed=${growbed}`,
+    requestOptions,
+  );
+  data = await data.json();
+  return data;
+};
+
+export const getEvents = async (greenhouse) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(
+    SERVER_URL + DB_EVENTS + `?greenhouse=${greenhouse}`,
+    requestOptions,
+  );
+  return response.json();
+};
+
+export const getHistoricalEnvironment = async (greenhouse, growbed) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(
+    SERVER_URL + DB_HISTORICAL + `?growbed=${growbed}&greenhouse=${greenhouse}`,
+    requestOptions,
+  );
+  return response.json();
+};
+
+export const getDiseasesCount = async (greenhouse) => {
+  var myHeaders = new Headers();
+  myHeaders.append('token', localStorage.getItem('token'));
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  let response = await fetch(
+    SERVER_URL + DB_DISEASES + `?greenhouse=${greenhouse}`,
+    requestOptions,
+  );
 
   return response.json();
 };

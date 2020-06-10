@@ -1,12 +1,13 @@
 import React from "react";
 import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router-dom";
 import { loginUser as login } from "../Utils/Api";
 import "../styles/login.css";
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
+import { GiFarmer } from "react-icons/gi";
 
+//AiOutlineFundView 
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
@@ -68,7 +69,7 @@ class LoginPage extends React.Component {
           <Row className="d-flex justify-content-center">
             <Col className="col-sm-4">
               <div className="d-flex justify-content-center icon">
-                <FontAwesomeIcon icon={faUserTie} classame="usr" color="gray" />
+                <GiFarmer classame="usr" color="2AC218" />
               </div>
 
               <Form onSubmit={this.loginUser}>
