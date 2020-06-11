@@ -84,16 +84,20 @@ export default class DB3 extends React.Component {
   };
 
   getData = async (greenhouse, growbed) => {
-    let res = await getDegreesDay(greenhouse, growbed);
+    try {
+      let res = await getDegreesDay(greenhouse, growbed);
 
-    this.setState({
-      series: [{ name: 'Grados día', data: res.data.degrees }],
-      options: {
-        xaxis: {
-          categories: res.data.date,
+      this.setState({
+        series: [{ name: 'Grados día', data: res.data.degrees }],
+        options: {
+          xaxis: {
+            categories: res.data.date,
+          },
         },
-      },
-    });
+      });
+    } catch (error) {
+      return;
+    }
   };
 
   render() {
