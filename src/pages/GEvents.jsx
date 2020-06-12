@@ -13,32 +13,7 @@ export default class DB2 extends React.Component {
     this.state = {
       growBedId: null,
       greenHouseId: null,
-      series: [
-        {
-          name: 'Apertura de Puertas',
-          data: [44, 55, 41, 37, 22, 43],
-        },
-        {
-          name: 'Cierre de puertas',
-          data: [53, 32, 33, 52, 13, 43],
-        },
-        {
-          name: 'Apertura de Cortinas',
-          data: [12, 17, 11, 9, 15, 11],
-        },
-        {
-          name: 'Cierre de Cortinas',
-          data: [9, 7, 5, 8, 6, 9],
-        },
-        {
-          name: 'Encendido de Luces',
-          data: [25, 12, 19, 32, 25, 24],
-        },
-        {
-          name: 'Apagado de Luces',
-          data: [25, 12, 19, 32, 25, 24],
-        },
-      ],
+      series: [],
       options: {
         chart: {
           type: 'bar',
@@ -111,16 +86,19 @@ export default class DB2 extends React.Component {
   };
 
   getData = async (greenhouse) => {
-    let res = await getEvents(greenhouse);
-
-    this.setState({
-      series: res.data.series,
-      options: {
-        xaxis: {
-          categories: res.data.date,
+    try {
+      let res = await getEvents(greenhouse);
+      this.setState({
+        series: res.data.series,
+        options: {
+          xaxis: {
+            categories: res.data.date,
+          },
         },
-      },
-    });
+      });
+    } catch (error) {
+      return;
+    }
   };
 
   render() {
