@@ -4,10 +4,11 @@
 
 `npm i`
 
-### Para lanzar la aplicación ejecutar el comando
-
-`npm start`
-
-### Para generar el proyecto en produccion, ejecutar el comando
+### Para generar ejecutar la aplicación, ejecutar el siguiente comando y seguir las instrucciones
 
 `npm run build`
+
+
+### Para lanzar la aplicación en modo develop ejecutar el comando
+
+`npm start`
