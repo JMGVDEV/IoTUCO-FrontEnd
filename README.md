@@ -1,13 +1,16 @@
 # Front End IoT - UCO
 
-### Para instalar paquetes ejecutar el comando
+## Para correr la aplicación
 
-`npm i`
-
-### Para generar ejecutar la aplicación, ejecutar el siguiente comando y seguir las instrucciones
+### Ejecutar el siguiente comando y seguir las instrucciones
 
 `npm run build`
 
+## Para hacer cambios en la aplicación
+
+### Para instalar paquetes ejecutar el comando
+
+`npm i`
 
 ### Para lanzar la aplicación en modo develop ejecutar el comando
 
