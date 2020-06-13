@@ -55,7 +55,7 @@ export default class DB4 extends React.Component {
           },
           enabled: true,
           formatter: function (val) {
-            return val + '%';
+            return Math.round(val) + '%';
           },
         },
       },
