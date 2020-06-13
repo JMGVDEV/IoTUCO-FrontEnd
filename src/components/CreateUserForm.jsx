@@ -4,7 +4,6 @@ import { createUser } from '../Utils/Api';
 import Typography from '@material-ui/core/Typography';
 import QRgen from '../components/QRgenerator';
 import zxcvbn from 'zxcvbn';
-import { id } from 'date-fns/esm/locale';
 import PasswordStrengthBar from 'react-password-strength-bar';
 
 export default class CreateUserForm extends Component {

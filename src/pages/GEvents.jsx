@@ -22,8 +22,7 @@ export default class DB2 extends React.Component {
         },
         plotOptions: {
           bar: {
-            horizontal: true,
-            endingShape: 'rounded',
+            horizontal: false,
           },
         },
         stroke: {
@@ -35,24 +34,15 @@ export default class DB2 extends React.Component {
         },
         xaxis: {
           categories: [],
+          type: 'datetime',
           title: {
-            text: 'Eventos Totales',
+            text: 'Fecha',
+            offsetY: 10,
           },
         },
         yaxis: {
-          type: 'datetime',
-          labels: {
-            datetimeUTC: true,
-            datetimeFormatter: {
-              year: 'yyyy',
-              month: "MMM 'yy",
-              day: 'dd MMM',
-              hour: 'HH:mm',
-            },
-          },
-
           title: {
-            text: 'Fecha',
+            text: 'Eventos totales',
           },
         },
         tooltip: {
@@ -107,7 +97,9 @@ export default class DB2 extends React.Component {
         <NavBarDark />
         <Row className="content">
           <Col className="col-md-3 w-100 shadow-lg pt-3 mt-3 ">
-            <Filters handleFiltersChange={this.handleFiltersChange}></Filters>
+            <Filters
+              disabled={true}
+              handleFiltersChange={this.handleFiltersChange}></Filters>
           </Col>
           <Col className="col-md-9 px-10 text-center justify-content-center">
             <div className="pt-3 text-center">
@@ -116,7 +108,7 @@ export default class DB2 extends React.Component {
                 variant="h3"
                 style={{ color: 'gray' }}
                 gutterBottom>
-                Invernadero {this.state.greenHouseId}
+                Eventos - Invernadero {this.state.greenHouseId}
               </Typography>
             </div>
             <div id="chart">

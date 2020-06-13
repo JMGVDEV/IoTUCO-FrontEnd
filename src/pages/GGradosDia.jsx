@@ -6,7 +6,7 @@ import { Row, Col } from 'react-bootstrap';
 import Typography from '@material-ui/core/Typography';
 import { getDegreesDay } from '../Utils/Api';
 
-export default class DB3 extends React.Component {
+export default class DB3 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -115,7 +115,7 @@ export default class DB3 extends React.Component {
                 variant="h3"
                 style={{ color: 'gray' }}
                 gutterBottom>
-                Invernadero {this.state.greenHouseId} - Cama{' '}
+                Grados día - Invernadero {this.state.greenHouseId} cama{' '}
                 {this.state.growBedId}
               </Typography>
             </div>
