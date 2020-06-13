@@ -15,7 +15,13 @@ export default class DiseaseForm extends Component {
   componentWillMount = async () => {
     try {
       let diseases = await getDiseases();
-      this.setState({ diseases });
+      let checked = {};
+
+      diseases.forEach((disease) => {
+        checked[disease.name] = false;
+      });
+
+      this.setState({ diseases, ...checked });
     } catch (error) {
       console.log(error);
     }
@@ -23,11 +29,17 @@ export default class DiseaseForm extends Component {
 
   // React Checkboxes onChange Methods
   onChangeDisease = (e) => {
-    if (e.target.checked) {
-      this.checkedDiseases.push(e.target.value);
+    let name = e.target.name;
+    let checked = e.target.checked;
+
+    if (checked) {
+      this.checkedDiseases.push(name);
     } else {
-      this.checkedDiseases.pop(e.target.value);
+      this.checkedDiseases.pop(name);
     }
+
+    console.log(this.checkedDiseases);
+    this.setState({ [name]: checked });
   };
 
   onChangeObservation = (e) => {
@@ -66,14 +78,13 @@ export default class DiseaseForm extends Component {
           <Row className="mb-4">
             {this.state.diseases.map((disease, idx) => (
               <Col className="col-lg-2" key={idx}>
-                <Form.Group controlId="formBasicCheckbox">
-                  <Form.Check
-                    type="checkbox"
-                    value={disease.name}
-                    label={disease.name}
-                    onChange={this.onChangeDisease}
-                  />
-                </Form.Group>
+                <Form.Check
+                  type="checkbox"
+                  checked={this.state[disease.name]}
+                  onChange={this.onChangeDisease}
+                  label={disease.name}
+                  name={disease.name}
+                />
               </Col>
             ))}
           </Row>
@@ -94,8 +105,7 @@ export default class DiseaseForm extends Component {
               type="submit"
               value="Submit"
               variant="btn btn-outline-primary"
-              className="btn-block w-50 "
-              >
+              className="btn-block w-50 ">
               SAVE
             </Button>
           </div>
