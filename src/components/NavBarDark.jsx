@@ -12,12 +12,12 @@ export default class NavBarDark extends Component {
 
   isAdmin = () => {
     let role = localStorage.getItem('role');
-    return role == 'admin' ? true : false;
+    return role === 'admin' ? true : false;
   };
 
   isViewer = () => {
     let role = localStorage.getItem('role');
-    return role == 'viewer' ? true : false;
+    return role === 'viewer' ? true : false;
   };
 
   render() {

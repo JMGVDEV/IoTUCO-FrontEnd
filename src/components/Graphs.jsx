@@ -28,7 +28,7 @@ export default class Graphs extends Component {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    if (this.props.interval == prevProps.interval) {
+    if (this.props.interval === prevProps.interval) {
       return;
     }
     clearInterval(this.interval);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'react-bootstrap';
 import { getGrowBeds, getGreenHouses } from '../Utils/Api';
-import { GiGreenhouse} from "react-icons/gi";
+import { GiGreenhouse } from 'react-icons/gi';
 //import invernadero from '../assets/greenhouse.png';
 
 export default class Filters extends Component {
@@ -32,7 +32,7 @@ export default class Filters extends Component {
 
     let greenHouseId = values[1][0].greenhouse;
     let growBeds = this.allGrowBeds.filter(
-      (growBed) => growBed.greenhouse == greenHouseId,
+      (growBed) => growBed.greenhouse === greenHouseId,
     );
 
     this.setState({ greenHouses: values[1], growBeds, greenHouseId });
@@ -47,7 +47,7 @@ export default class Filters extends Component {
     let greenHouseId = e.target.value;
 
     let growBeds = this.allGrowBeds.filter(
-      (growBed) => growBed.greenhouse == greenHouseId,
+      (growBed) => growBed.greenhouse === greenHouseId,
     );
 
     this.setState({ growBeds, greenHouseId });
@@ -71,7 +71,12 @@ export default class Filters extends Component {
       <div>
         <div className="pt-3 text-center" style={{ padding: 20 }}>
           <h3>Seleccionar Cama</h3>
-          <GiGreenhouse classame="usr" color="2AC218" size="120px" width="200px" />
+          <GiGreenhouse
+            classame="usr"
+            color="2AC218"
+            size="120px"
+            width="200px"
+          />
         </div>
 
         <Form onSubmit={this.createUser}>
@@ -94,6 +99,7 @@ export default class Filters extends Component {
           <Form.Group>
             <Form.Label>Camas:</Form.Label>
             <Form.Control
+              disabled={this.props.disabled || false}
               onChange={this.handleGrowBedChange}
               as="select"
               required={true}>

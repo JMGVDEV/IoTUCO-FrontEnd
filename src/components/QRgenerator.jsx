@@ -3,10 +3,6 @@ import { Modal } from 'react-bootstrap';
 import QRCode from 'qrcode.react';
 
 export default class QRgen extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
   render() {
     return (
       <>

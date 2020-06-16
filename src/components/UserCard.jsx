@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { getGrowBeds, getGreenHouses } from '../Utils/Api';
-import { RiUserSettingsLine} from "react-icons/ri";
+import { RiUserSettingsLine } from 'react-icons/ri';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { updateUser, deleteUser } from '../Utils/Api';
 import Typography from '@material-ui/core/Typography';
@@ -65,7 +64,9 @@ export default class UserCard extends Component {
       return;
     }
 
-    let user = this.props.users.find((user) => user.name == event.target.value);
+    let user = this.props.users.find(
+      (user) => user.name === event.target.value,
+    );
     this.setState({ user, user_selected: true });
   };
 
@@ -102,7 +103,12 @@ export default class UserCard extends Component {
         <div className="text-center pb-3 shadow-lg">
           <Row className="d-flex flex-column align-items-center">
             <div className="icon p-0 m-0">
-              <RiUserSettingsLine classame="usr" color="2AC218" size="120px" width="200px"  />
+              <RiUserSettingsLine
+                classame="usr"
+                color="2AC218"
+                size="120px"
+                width="200px"
+              />
             </div>
 
             <Form className="w-75">
